@@ -22,15 +22,16 @@ https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
 - add comment 
 - Follow the chefs
 
+
+# UML
+![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/Untitled%20Diagram.drawio%20(5).png
+)
+
 ---
-Wireframes:
+#Wireframes:
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/home.jpg)
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/chefP.jpg)
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/re.jpg)
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/profile%20.jpg)
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/d-page.jpg)
 
----
-ERD:
-
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/Untitled%20Diagram.drawio%20(2).png)
