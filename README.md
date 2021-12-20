@@ -22,7 +22,7 @@
 - add comment 
 - Follow the chefs
 ---
-#### server side url https://github.com/MP-Project-Sultan/server
+#### server side url https://github.com/MP-Project-Abdulhakim/server
 #### presentation slides http://www.abdulhakim.com
 #### project deployed there http://heroku.abdulhakim.com
 #### Trello link https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
