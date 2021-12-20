@@ -1,5 +1,5 @@
-# trello
-https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
+# Description
+
 
 
 ---
@@ -12,7 +12,7 @@ https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
 
 - Chef [add post - add video - add comment - delete post - delete video ]
 
----
+
 
 - user
 - [Watch posts - Watch videos]
@@ -21,8 +21,22 @@ https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
 - add to favorite
 - add comment 
 - Follow the chefs
+---
+#### server side url https://github.com/MP-Project-Sultan/server
+#### presentation slides http://www.abdulhakim.com
+#### project deployed there http://heroku.abdulhakim.com
+#### Trello link https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
 
 
+ Components |  permsission  |    Path  |  Behavior |                              
+------------|---------------| ---------| ---------
+ Home       |  everybody     |`/`       |   main page 
+  Register  |  everybody     |`/Register`|    user can register there                 
+   Login    | user + admin  |`/login`  |       page of signin              
+ chef page   |everybody  |`/chef`|   page of chefs recipes
+  About us  |   everybody    |`/aboutus` |  page includes information about us
+ contact us |   everybody    |`/contact` |         page of contact and how to be touch with us
+       
 # UML
 ![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/Untitled%20Diagram.drawio%20(5).png
 )
