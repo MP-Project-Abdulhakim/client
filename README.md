@@ -1,51 +1,70 @@
-# Description
-Creating Community WebSite of chefs and users, 
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
----
+## Available Scripts
 
-# User-Stories
+In the project directory, you can run:
 
-- Registration type [ admin - chef- user ]
+### `npm start`
 
-- admin [ Delete post - delete video - delete user - delete comment ]
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- Chef [add post - add video - add comment - delete post - delete video ]
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- user
-- [Watch posts - Watch videos]
-- The user can Check the cooking posts and click on the post to start cooking.
-- user (logIn):
-- add to favorite
-- add comment 
-- Follow the chefs
----
-#### server side url https://github.com/MP-Project-Abdulhakim/server
-#### presentation slides http://www.abdulhakim.com
-#### project deployed there http://heroku.abdulhakim.com
-#### Trello link https://trello.com/b/qhLIrfnX/mp-project-abdulhakim
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
- Components |  permsission  |    Path  |  Behavior |                              
-------------|---------------| ---------| ---------
- Home       |  everybody     |`/`       |   main page 
-  Register  |  everybody     |`/Register`|    user can register there                 
-   Login    | user + admin  |`/login`  |       page of signin              
- chef page   |everybody  |`/chef`|   page of chefs recipes
-  About us  |   everybody    |`/aboutus` |  page includes information about us
- contact us |   everybody    |`/contact` |         page of contact and how to be touch with us
-       
-# UML
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/Untitled%20Diagram.drawio%20(5).png
-)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
----
-#Wireframes:
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/home.jpg)
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/chefP.jpg)
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/re.jpg)
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/profile%20.jpg)
-![ER Diagram](https://github.com/AbdulhakimAloudah/User-Stories/blob/main/img/d-page.jpg)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
