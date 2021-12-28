@@ -9,7 +9,7 @@ const Postes = (props) => {
   return (
     <div className="Postes">
       <p>title--{title}</p>
-      <p>img----{image}</p>
+      <img src={image} alt="" />
     </div>
   );
 };
