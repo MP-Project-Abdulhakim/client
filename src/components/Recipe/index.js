@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 function Recipe() {
   const [postes, setpostes] = useState([]);
   const param = useParams();
-console.log(param);
   useEffect(() => {
     getPostes();
   }, []);
@@ -14,8 +13,7 @@ console.log(param);
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
-        setpostes(response.data.filter((post)=>post._id==param.id));
-        console.log(postes[0].title);
+        setpostes(response.data.filter((post) => post._id == param.id));
       })
       .catch((err) => {
         console.log(err);
@@ -23,13 +21,22 @@ console.log(param);
       .then(() => {});
   };
 
+  const recipe = postes[0]?.recipe.map(function (item, i) {
+    return <li>{item}</li>;
+  });
+
+  const ingridents = postes[0]?.ingridents.map(function (item, i) {
+    return <li>{item}</li>;
+  });
+
   return (
     <>
-      <>
-        <h1>{postes[0]?.title}</h1>
-
-        <img src={postes[0]?.image} />
-      </>
+      <h1>{postes[0]?.title}</h1>
+      <img src={postes[0]?.image} />
+      <h1>recipe</h1>
+      {recipe}
+      <h1>ingridents</h1>
+      {ingridents}
     </>
   );
 }
