@@ -8,6 +8,11 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 
+
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 function App() {
   const navigate = useNavigate();
   const [postes, setpostes] = useState([]);
