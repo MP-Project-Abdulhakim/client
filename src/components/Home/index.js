@@ -13,11 +13,14 @@ function Home() {
     getPostes();
     getusers();
   }, []);
+  
   const getPostes = () => {
+    
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
         setpostes(response.data);
+        console.log(setpostes);
       })
       .catch((err) => {
         console.log(err);
@@ -39,9 +42,13 @@ function Home() {
       })
       .then(() => {});
   };
+
+
   const imageClick = (id) => {
     navigate(`/Recipe/${id}`);
   };
+
+  
   const profileClick = (id) => {
     navigate(`/profile/${id}`);
   };
