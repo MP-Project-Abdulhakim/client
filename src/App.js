@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 // import Signup from "./components/Signup";
 // import Login from "./components/Login";
-// import Logout from "./components/Logout";
+// import Postes from "./components/Postes";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Recipe from "./components/Recipe";
@@ -18,10 +18,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Logout /> */}
-      {/* <button onClick={() => navigate("/login")}>go to login</button>
-      <button onClick={() => navigate("/signup")}>go to signup</button>
-      <h1>the postes</h1> */}
+      {/* <Postes/> */}
       <Routes>
         <Route exact path="/Recipe/:id" element={<Recipe />} />
         <Route exact path="/profile/:id" element={<Profile />} />
