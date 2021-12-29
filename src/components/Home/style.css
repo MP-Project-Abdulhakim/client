@@ -1,0 +1,12 @@
+.homem_profile {
+  background-color: red;
+  width: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.homem_profile img {
+  width: 90px;
+  height: 50px;
+  background-color: red;
+}

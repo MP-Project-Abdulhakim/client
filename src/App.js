@@ -1,59 +1,32 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Postes from "./components/Postes";
-import { useNavigate } from "react-router-dom";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-
+// import { useNavigate } from "react-router-dom";
+// import Signup from "./components/Signup";
+// import Login from "./components/Login";
+// import Logout from "./components/Logout";
+import Home from "./components/Home";
+import Header from "./components/Header";
+import Recipe from "./components/Recipe";
+import Profile from "./components/Profile";
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-
 function App() {
-  const navigate = useNavigate();
-  const [postes, setpostes] = useState([]);
-
-  useEffect(() => {
-    getPostes();
-  }, []);
-
-  const getPostes = () => {
-    axios
-      .get("http://localhost:5000/getPosts")
-      .then((response) => {
-        console.log(response.data);
-        setpostes(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then(() => {});
-  };
-
-  const mapOverPostes = postes.map((elem, i) => <Postes key={i} post={elem} />);
-  // const mapOverPostes = postes.map((elem, i) => {
-  //   return <p>{elem.title}</p>;
-  // });
+  // const navigate = useNavigate();
 
   return (
     <div className="App">
-      <h1>the chef</h1>
-      <Logout />
-      <button onClick={() => navigate("/login")}>go to login</button>
+      <Header />
+      {/* <Logout /> */}
+      {/* <button onClick={() => navigate("/login")}>go to login</button>
       <button onClick={() => navigate("/signup")}>go to signup</button>
-      <h1>the postes</h1>
+      <h1>the postes</h1> */}
       <Routes>
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/Recipe/:id" element={<Recipe />} />
+        <Route exact path="/profile/:id" element={<Profile />} />
+        <Route exact path="/" element={<Home />} />
       </Routes>
-
-      {/* <button onClick={() => navigate("/")}>go to Logout</button> */}
-
-      {mapOverPostes}
     </div>
   );
 }

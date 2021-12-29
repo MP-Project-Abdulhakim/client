@@ -16,6 +16,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("61c817269c72cd8cbad62eff");
   const [message, setMessage] = useState("");
 
   const state = useSelector((state) => {
@@ -32,6 +33,7 @@ const Signup = () => {
       username: username,
       email: email,
       password: password,
+      role: role
     });
     console.log(res);
     if (res.status === 201) {
@@ -48,90 +50,95 @@ const Signup = () => {
     }
   };
 
-  return(
-  <div className="Signup">
-    {state.token ? (
-      <h1>
-        <div className="centerWrapper">
-          <div className="homeSignupTitle">
-            <p>You already loggedin, you don't need to signup</p>
+  return (
+    <div className="Signup">
+      {state.token ? (
+        <h1>
+          <div className="centerWrapper">
+            <div className="homeSignupTitle">
+              <p>You already loggedin, you don't need to signup</p>
+            </div>
+            <div className="homeSignupButtons">
+              <button onClick={() => navigate("/")}>HOME</button>
+            </div>
           </div>
-          <div className="homeSignupButtons">
-            <button onClick={() => navigate("/")}>HOME</button>
+        </h1>
+      ) : (
+        <main className="signupPanel">
+          <div className="loginDiv">
+            <h1>check Password:</h1>
+            <PasswordChecklist
+              rules={[
+                "minLength",
+                "specialChar",
+                "number",
+                "capital",
+                "lowercase",
+              ]}
+              minLength={6}
+              value={password}
+              onChange={(isValid) => {
+                if (isValid) {
+                  const button = document.querySelector("#signupSubmitButton");
+                  button.disabled = false;
+                } else {
+                  const button = document.querySelector("#signupSubmitButton");
+                  button.disabled = true;
+                }
+              }}
+            />
+            <button
+              id="loginButton"
+              className="btnBK"
+              onClick={() => navigate("/login")}
+            >
+              or go to login
+            </button>
           </div>
-        </div>
-      </h1>
-    ) : (
-      <main className="signupPanel">
-        <div className="loginDiv">
-          <h1>check Password:</h1>
-          <PasswordChecklist
-            rules={[
-              "minLength",
-              "specialChar",
-              "number",
-              "capital",
-              "lowercase",
-            ]}
-            minLength={6}
-            value={password}
-            onChange={(isValid) => {
-              if (isValid) {
-                const button = document.querySelector("#signupSubmitButton");
-                button.disabled = false;
-              } else {
-                const button = document.querySelector("#signupSubmitButton");
-                button.disabled = true;
-              }
-            }}
-          />
-          <button
-            id="loginButton"
-            className="btnBK"
-            onClick={() => navigate("/login")}
-          >
-            or go to login
-          </button>
-        </div>
-        <div className="signupDiv">
-          <h2>Signup</h2>
-          {message ? <div className="message">{message}</div> : ""}
-          <form
-            className="signupInput"
-            onSubmit={(e) => {
-              e.preventDefault();
-              getSignup(e);
-            }}
-          >
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              id="signupSubmitButton"
-              type="submit"
-              value="Submit"
-              disabled
-            />
-          </form>
-        </div>
-      </main>
-    )}
-  </div>)
+          <div className="signupDiv">
+            <h2>Signup</h2>
+            {message ? <div className="message">{message}</div> : ""}
+            <form
+              className="signupInput"
+              onSubmit={(e) => {
+                e.preventDefault();
+                getSignup(e);
+              }}
+            >
+              <select onChange={(e) => setRole(e.target.value)} required>
+                <option value="61c817269c72cd8cbad62eff">User</option>
+                <option value="61cc4465387a78a3e5b8d772">Chef</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <input
+                id="signupSubmitButton"
+                type="submit"
+                value="Submit"
+                disabled
+              />
+            </form>
+          </div>
+        </main>
+      )}
+    </div>
+  );
 };
 
 export default Signup;
