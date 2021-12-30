@@ -50,7 +50,7 @@ function Home() {
 
   
   const profileClick = (id) => {
-    navigate(`/profile/${id}`);
+    navigate(`/Chefpostes/${id}`);
   };
 
   return (
