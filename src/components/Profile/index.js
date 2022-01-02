@@ -18,7 +18,7 @@ function Profile() {
       .get("http://localhost:5000/getusers")
       .then((response) => {
         setusers(response.data.filter((users) => users._id == param.id));
-            console.log(response.data);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -26,20 +26,13 @@ function Profile() {
       .then(() => {});
   };
 
-//   const imageClick = (id) => {
-//     navigate(`/Chefpostes/${id}`);
-//   };
-//
   return (
     <>
       {users.map((item) => (
         <>
           <h1>name</h1>
           <h3>{item.username}</h3>
-          {/* <h1> */}
           <img src={item.imgProfile} />
-          {/* <img src={item.image} onClick={() => imageClick(item._id)} /> */}
-          {/* </h1> */}
         </>
       ))}
     </>

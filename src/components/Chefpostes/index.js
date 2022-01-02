@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function Chefpostes() {
+function Profile() {
   const [postes, setpostes] = useState([]);
   const param = useParams();
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   console.log(param);
   useEffect(() => {
@@ -27,6 +27,8 @@ function Chefpostes() {
       .then(() => {});
   };
 
+
+  
   const imageClick = (id) => {
     navigate(`/Recipe/${id}`);
   };
@@ -35,6 +37,8 @@ function Chefpostes() {
     <>
       {postes.map((item) => (
         <>
+                  <h1>{item.title}</h1>
+
           <h1>{item.title}</h1>
           <h1>
             {/* <img src={item.image} /> */}
@@ -46,4 +50,4 @@ function Chefpostes() {
   );
 }
 
-export default Chefpostes;
+export default Profile;
