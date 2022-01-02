@@ -31,12 +31,16 @@ const Login = () => {
     setMessage("");
     try {
       const res = await axios.post(`http://localhost:5000/login`, {
-        email: emilOrUserName,
+        usernameOrEmail: emilOrUserName,
         password,
-        userName: emilOrUserName,
       });
-
-      dispatch(Loginn({ role: res.data.result.role, token: res.data.token }));
+      dispatch(
+        Loginn({
+          role: res.data.result.role,
+          token: res.data.token,
+          id: res.data.result._id,
+        })
+      );
       Swal.fire({
         position: "center",
         icon: "success",
@@ -44,6 +48,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      console.log(res.data);
       navigate("/");
     } catch (error) {
       setMessage(error.response.data.message);
