@@ -47,10 +47,8 @@ function Like() {
       {console.log(users)}
       {users?.map((item) => (
         <>
-         
+          <p>name</p>
           <h3>{item.postId.title}</h3>
-
-          <h1>name</h1>
 
           {/* <img src={item.imgProfile} /> */}
         </>

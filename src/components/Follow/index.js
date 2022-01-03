@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-function MyProfile() {
+function Follow() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -18,35 +18,46 @@ function MyProfile() {
     getUsers();
   }, []);
 
-
   const getUsers = () => {
     axios
-      .get("http://localhost:5000/getusers")
-      .then((response) => {
-        console.log("0000", response.data);
-        setUsers(response.data.filter((users) => users._id == state.Login.id));
+      .post(
+        "http://localhost:5000/getfollowed",
+        {
+          username: state.Login.id,
+        },
+        { headers: { Authorization: `Bearer ${state.Login.token}` } }
+      )
+      .then((response) => { 
+        setUsers(
+          response.data[0]
+        );
         console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
       })
-      .then(() => {});
+     ;
   };
 
+
   
+  const chefPostesClick = (id) => {
+    navigate(`/Chefpostes/${id}`);
+  };
+
 
   return (
     <>
-      <h1>hi MyProfile</h1>
-      {users.map((item) => (
-        <>
-          <h1>name</h1>
+      <h1>you follow</h1>
+
+      {users?.following?.map((item) => (
+        <div onClick={() => chefPostesClick(item._id)}>
+          <p>name</p>
           <h3>{item.username}</h3>
-          <img src={item.imgProfile} />
-        </>
+        </div>
       ))}
     </>
   );
 }
 
-export default MyProfile;
+export default Follow;
