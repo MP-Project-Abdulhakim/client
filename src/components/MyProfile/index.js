@@ -40,8 +40,10 @@ function MyProfile() {
       <h1>hi MyProfile</h1>
       {users.map((item) => (
         <>
+        
           <h1>name</h1>
           <h3>{item.username}</h3>
+          <p>followed {}</p>
           <img src={item.imgProfile} />
         </>
       ))}

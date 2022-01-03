@@ -15,28 +15,23 @@ function Follow() {
 
   console.log(state);
   useEffect(() => {
-    getUsers();
+    getfollowed();
   }, []);
 
-  const getUsers = () => {
+  const getfollowed = () => {
     axios
-      .post(
-        "http://localhost:5000/getfollowed",
-        {
-          username: state.Login.id,
-        },
-        { headers: { Authorization: `Bearer ${state.Login.token}` } }
+      .get(
+        "http://localhost:5000/getfollowed"
+    
       )
-      .then((response) => { 
-        setUsers(
-          response.data[0]
-        );
+      .then((response) => {
+        console.log(response.data);
+        setUsers(response.data[0]);
         console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
-      })
-     ;
+      });
   };
 
 
@@ -48,7 +43,7 @@ function Follow() {
 
   return (
     <>
-      <h1>you follow</h1>
+      <h1>you foollow</h1>
 
       {users?.following?.map((item) => (
         <div onClick={() => chefPostesClick(item._id)}>
