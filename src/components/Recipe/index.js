@@ -7,9 +7,12 @@ import Commentss from "../comment";
 function Recipe() {
   const [postes, setpostes] = useState([]);
   const [isLike, setisLike] = useState(false);
+  const [isFollow, setFollow] = useState([]);
+
   const param = useParams();
   useEffect(() => {
     getPostes();
+    
   }, []);
 
   const state = useSelector((state) => {
@@ -22,6 +25,7 @@ function Recipe() {
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
+        console.log(response.data);
         setpostes(response.data.filter((post) => post._id == param.id));
 
         let check = response.data
@@ -30,10 +34,9 @@ function Recipe() {
 
         if (check.includes(true)) {
           setisLike(true);
-        }else {
+        } else {
           setisLike(false);
         }
-        
       })
       .catch((err) => {
         console.log(err);
@@ -58,8 +61,6 @@ function Recipe() {
       });
   };
 
-
-  
   const removeLike = () => {
     axios
       .put(
@@ -78,6 +79,76 @@ function Recipe() {
       });
   };
 
+  const getUsersFollowing = () => {
+    axios
+      .get("http://localhost:5000/getfollowed")
+      .then((response) => {
+        if (postes[0]?.createdBy._id!=null) {
+          console.log(
+            response.data.filter(
+              (user) => user.username == postes[0]?.createdBy._id
+            )[0].followedBy
+          );
+          console.log(state.Login.id);
+          if (
+            response.data
+              .filter((user) => user.username == postes[0]?.createdBy._id)[0]
+              .followedBy.includes(state.Login.id)
+          ) {
+            console.log("im followed");
+             setFollow(true);
+          } else {
+            console.log("not followed");
+             setFollow(false);
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getUsersFollowing();
+  }, [postes]);
+
+
+
+  const gevFollow = () => {
+    axios
+      .post(
+        "http://localhost:5000/follow",
+        {
+          following: postes[0]?.createdBy._id,
+        },
+        { headers: { Authorization: `Bearer ${state.Login.token}` } }
+      )
+      .then((response) => {
+        console.log(response.data);
+        getPostes();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const removeFollow = () => {
+    axios
+      .put(
+        "http://localhost:5000/deletefollow",
+        {
+          following: postes[0]?.createdBy._id,
+        },
+        { headers: { Authorization: `Bearer ${state.Login.token}` } }
+      )
+      .then((response) => {
+        console.log(response.data);
+        getPostes();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const recipe = postes[0]?.recipe.map(function (item, i) {
     return <li>{item}</li>;
@@ -89,20 +160,25 @@ function Recipe() {
 
   return (
     <>
+      <h1>{postes[0]?.createdBy.username}</h1>
       <h1>{postes[0]?.title}</h1>
       <img src={postes[0]?.image} />
       <h1>recipe</h1>
       {recipe}
       <h1>ingridents</h1>
       {ingridents}
-
       <hr />
-      {isLike ? (
-        <button onClick={() => removeLike()}>remove like</button>
-      ) : (
+      {!isLike ? (
         <button onClick={() => gevLike()}>like</button>
+      ) : (
+        <button onClick={() => removeLike()}>remove like</button>
       )}
-
+      <hr />
+      {isFollow ? (
+        <button onClick={() => removeFollow()}>remove follow</button>
+      ) : (
+        <button onClick={() => gevFollow()}>follow</button>
+      )}
       <Commentss />
     </>
   );

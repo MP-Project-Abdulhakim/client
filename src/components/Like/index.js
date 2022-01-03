@@ -40,6 +40,9 @@ function Like() {
   };
 
 
+          const imageClick = (id) => {
+            navigate(`/Recipe/${id}`);
+          };
 
   return (
     <>
@@ -49,8 +52,11 @@ function Like() {
         <>
           <p>name</p>
           <h3>{item.postId.title}</h3>
-
-          {/* <img src={item.imgProfile} /> */}
+          <img
+            src={item.postId.image}
+            onClick={() => imageClick(item.postId._id)}
+          />
+          ;
         </>
       ))}
     </>
