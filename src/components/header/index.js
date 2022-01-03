@@ -5,6 +5,7 @@ import Signup from "../Signup";
 import Login from "../Login";
 import Logout from "../Logout";
 import Like from "../Like";
+import Follow from "../Follow";
 import MyProfile from "../MyProfile";
 
 
@@ -17,12 +18,14 @@ const Header = () => {
         <button onClick={() => navigate("/login")}>go to login</button>
         <button onClick={() => navigate("/signup")}>go to signup</button>
         <button onClick={() => navigate("/like")}>go to like</button>
+        <button onClick={() => navigate("/follow")}>go to follow</button>
         <button onClick={() => navigate("/myprofile")}>go to My profile</button>
 
         <Routes>
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/like" element={<Like />} />
+          <Route exact path="/follow" element={<Follow />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
         </Routes>
       </div>
