@@ -150,8 +150,15 @@ function Recipe() {
       });
   };
 
-  const recipe = postes[0]?.recipe.map(function (item, i) {
-    return <li>{item}</li>;
+  const recipe = 
+  
+  postes[0]?.recipe.map(function (item, i) {
+    return (
+      <form action="">
+        <input type="checkbox" />
+        <label htmlFor="checkbox">{item}</label>
+      </form>
+    );
   });
 
   const ingridents = postes[0]?.ingridents.map(function (item, i) {

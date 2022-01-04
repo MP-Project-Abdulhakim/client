@@ -8,6 +8,8 @@ const Header = () => {
 
     return (
       <div>
+
+       
         <button onClick={() => navigate("/login")}>دخول</button>
         <button onClick={() => navigate("/signup")}>تسجيل جديد</button>
         <button onClick={() => navigate("/aboutus")}>عن الموقع</button>
@@ -16,7 +18,6 @@ const Header = () => {
         <button onClick={() => navigate("/myprofile")}>الملف الشخصي</button>
         <button onClick={() => navigate("/add_recipe")}>اضافة وصفة</button>
         <button onClick={() => navigate("/")}>الرئيسية</button>
-
       </div>
     );
 }
