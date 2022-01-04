@@ -120,7 +120,9 @@ useEffect(() => {
             onChange={(e) => updateIngredient(e, index)}
           ></input>
         ))}
-        <button onClick={() => setAddAnother([...add, []])}>+</button>
+        <button onClick={() => setAddAnother([...add, []])} type="button">
+          +
+        </button>
         <label className="modelDes">recipe</label>
         {recipe.map((i, index) => (
           <input
@@ -130,11 +132,15 @@ useEffect(() => {
             onChange={(e) => updaterecepe(e, index)}
           ></input>
         ))}
-        <button onClick={() => setreciper([...recipe, []])}>+</button>
+        <button onClick={() => setreciper([...recipe, []])} type="button">
+          +
+        </button>
         <br />
-        <button onClick={() => navigate("/myprofile")}>الملف الشخصي</button>
+        <button onClick={() => navigate("/myprofile")} type="button">
+          رجوع
+        </button>
 
-        <button className="submitBtn" type="onSubmit">
+        <button className="submitBtn" type="submit">
           submit
         </button>
       </form>
