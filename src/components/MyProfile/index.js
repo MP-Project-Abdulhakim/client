@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
+import Header from "../Header";
 
 function MyProfile() {
   const [users, setUsers] = useState([]);
@@ -157,7 +158,7 @@ useEffect(() => {
             defaultValue={users[0].password}
           />
           <label className="modelDes">img profile</label>
-        
+
           <div className="upload">
             <input
               type="file"

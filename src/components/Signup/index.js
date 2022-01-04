@@ -9,6 +9,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import "./style.css";
+import Header from "../Header";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const MySwal = withReactContent(Swal);
 const Signup = () => {
@@ -52,6 +53,7 @@ const Signup = () => {
 
   return (
     <div className="Signup">
+
       {state.token ? (
         <h1>
           <div className="centerWrapper">
