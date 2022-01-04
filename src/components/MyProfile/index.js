@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { storage } from "../../Firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 
 function MyProfile() {
   const [users, setUsers] = useState([]);
@@ -14,6 +16,38 @@ function MyProfile() {
       Login: state.Login,
     };
   });
+
+
+const [progress, setProgress] = useState(0);
+const [images, setImages] = useState([]);
+
+const uploadPictures = (e) => {
+  let image = e.target.files[0];
+  const dataType = image.name.match(/\.(jpe?g|png|gif)$/gi);
+  if (image == null || dataType == null) return;
+  const storageRef = ref(storage, `images/${image.name}`);
+  const uploadImamge = uploadBytesResumable(storageRef, image);
+  uploadImamge.on(
+    "state_changed",
+    (snapshot) => {
+      const progress = Math.round(
+        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      );
+      setProgress(progress);
+    },
+    (err) => console.log(err),
+    () => {
+      getDownloadURL(uploadImamge.snapshot.ref).then((url) => {
+        setImages(url);
+        console.log(url);
+      });
+    }
+  );
+};
+useEffect(() => {
+  setProgress(0);
+}, [images]);
+
 
   console.log(state);
   useEffect(() => {
@@ -52,12 +86,13 @@ function MyProfile() {
 
   const updateUSer = async (e) => {
     e.preventDefault();
+    console.log();
     const result = await axios.put(
       `http://localhost:5000/updat/${state.Login.id}`,
       {
         password: e.target.password.value,
         username: e.target.username.value,
-        imgProfile: e.target.imgProfile.value,
+        imgProfile: images[0],
         email: e.target.email.value,
       },
       { headers: { Authorization: `Bearer ${state.Login.token}` } }
@@ -122,12 +157,30 @@ function MyProfile() {
             defaultValue={users[0].password}
           />
           <label className="modelDes">img profile</label>
-          <input
-            name="imgProfile"
-            type="text"
-            placeholder="imgProfile"
-            // defaultValue={users[0].imgProfile}
-          />
+        
+          <div className="upload">
+            <input
+              type="file"
+              accept=".gif,.jpg,.jpeg,.png"
+              onChange={(e) => {
+                uploadPictures(e);
+              }}
+              id="img"
+              style={{ display: "none" }}
+            />
+            <label htmlFor="img">تحميل صور</label>
+            {!(progress == 0) ? (
+              <div className="progress">
+                <p>يتم الرفع {progress}%</p>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="imagesPost">
+            {images?.map((image) => (
+              <img src={image} width="80px" height="80px" />
+            ))}
+          </div>
 
           <br />
           <button
