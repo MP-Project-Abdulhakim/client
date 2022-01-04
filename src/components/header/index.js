@@ -1,12 +1,6 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Signup from "../Signup";
-import Login from "../Login";
-import Logout from "../Logout";
-import Like from "../Like";
-import Follow from "../Follow";
-import MyProfile from "../MyProfile";
 
 
 const Header = () => {
@@ -14,20 +8,15 @@ const Header = () => {
 
     return (
       <div>
-        <Logout />
-        <button onClick={() => navigate("/login")}>go to login</button>
-        <button onClick={() => navigate("/signup")}>go to signup</button>
-        <button onClick={() => navigate("/like")}>go to like</button>
-        <button onClick={() => navigate("/follow")}>go to follow</button>
-        <button onClick={() => navigate("/myprofile")}>go to My profile</button>
+        <button onClick={() => navigate("/login")}>دخول</button>
+        <button onClick={() => navigate("/signup")}>تسجيل جديد</button>
+        <button onClick={() => navigate("/aboutus")}>عن الموقع</button>
+        <button onClick={() => navigate("/like")}>مفضلة الوصفات</button>
+        <button onClick={() => navigate("/follow")}>مفضلة الطباخين</button>
+        <button onClick={() => navigate("/myprofile")}>الملف الشخصي</button>
+        <button onClick={() => navigate("/add_recipe")}>اضافة وصفة</button>
+        <button onClick={() => navigate("/")}>الرئيسية</button>
 
-        <Routes>
-          <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/like" element={<Like />} />
-          <Route exact path="/follow" element={<Follow />} />
-          <Route exact path="/myprofile" element={<MyProfile />} />
-        </Routes>
       </div>
     );
 }

@@ -56,6 +56,7 @@ function Home() {
   return (
     <>
       <h1>the chef</h1>
+      <button onClick={()=>navigate('/add_recipe')}>add recipe</button>
       {console.log(users)}
       {users.map((item) => (
         <div className="homem_profile" onClick={() => profileClick(item._id)}>
