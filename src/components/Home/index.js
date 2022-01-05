@@ -62,7 +62,7 @@ function Home() {
       <div className="HorizontalScroll">
         {users.map((item) => (
           <div onClick={() => profileClick(item._id)}>
-            {/* <img className={cx("card-img")} src={item.imgProfile} /> */}
+           
             <img className="itm" src={item.imgProfile} />
 
             <div className="card-bodyy">

@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Commentss from "../comment";
+import grid from "../../styles/grid.css";
+import classNames from "classnames";
 
+const cx = classNames.bind(grid);
 
 function Recipe() {
   const [postes, setpostes] = useState([]);
@@ -168,29 +171,37 @@ function Recipe() {
 
   return (
     <div dir="rtl">
-      <h1>{postes[0]?.createdBy.username}</h1>
-      <h1>{postes[0]?.title}</h1>
-      <img src={postes[0]?.image} />
+      <div className={cx("card-detail")}>
+        {/* <h1>{postes[0]?.createdBy.username}</h1>
+        <h1>{postes[0]?.title}</h1> */}
+        <img className={cx("card-img")} src={postes[0]?.image} />
 
-      <hr />
-      <h1>المكونات</h1>
-      {ingridents}
-      <hr />
-      <h1>الخطوات</h1>
-      {recipe}
-      <hr />
-      {!isLike ? (
-        <button onClick={() => gevLike()}>like</button>
-      ) : (
-        <button onClick={() => removeLike()}>remove like</button>
-      )}
-      <hr />
-      {isFollow ? (
-        <button onClick={() => removeFollow()}>remove follow</button>
-      ) : (
-        <button onClick={() => gevFollow()}>follow</button>
-      )}
-      <Commentss />
+        <div>
+          <h3 className={cx("card-title")}>{postes[0]?.title}</h3>
+          <h4 >المكونات</h4>
+          <hr />
+          {ingridents}
+          <br></br>
+          <br></br>
+          <h4>الخطوات</h4>
+          <hr />
+          {recipe}
+        </div>
+        
+        {!isLike ? (
+          <button onClick={() => gevLike()}>like</button>
+        ) : (
+          <button onClick={() => removeLike()}>remove like</button>
+        )}
+        
+        {isFollow ? (
+          <button onClick={() => removeFollow()}>remove follow</button>
+        ) : (
+          <button onClick={() => gevFollow()}>follow</button>
+        )}
+        
+        <Commentss />
+      </div>
     </div>
   );
 }
