@@ -1,3 +1,11 @@
+
+
+.logo{
+  color: #eb4d4b;
+}
+
+
+
 .nav {
   width: 100%;
   display: flex;
@@ -32,3 +40,4 @@
   transform: scale(1.1);
   transition: 0.3s all linear;
 }
+
