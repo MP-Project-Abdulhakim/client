@@ -59,15 +59,16 @@ function Home() {
     <>
       <text>the chef</text>
       <br />
-      <div className={cx("grid", "grid-column", "grid-gap-1/5")}>
+      <div className="HorizontalScroll">
         {users.map((item) => (
-          <div
-            className={cx("card", "HorizontalScroll")}
-            onClick={() => profileClick(item._id)}
-          >
-            <img className={cx("card-img")} src={item.imgProfile} />
-            <div className={cx("card-body")}>
-              <p className={cx("card-title")}>{item.username}</p>
+          <div onClick={() => profileClick(item._id)}>
+            {/* <img className={cx("card-img")} src={item.imgProfile} /> */}
+            <img className="itm" src={item.imgProfile} />
+
+            <div className="card-bodyy">
+              <h6 className="card-titlee">
+                {item.username}
+              </h6>
             </div>
           </div>
         ))}
