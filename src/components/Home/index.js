@@ -2,7 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header";
-import './style.css'
+import "./style.css";
+import classNames from "classnames";
+import grid from "../../styles/grid.css";
+
+const cx = classNames.bind(grid);
 
 function Home() {
   const [postes, setpostes] = useState([]);
@@ -14,9 +18,8 @@ function Home() {
     getPostes();
     getusers();
   }, []);
-  
+
   const getPostes = () => {
-    
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
@@ -44,35 +47,48 @@ function Home() {
       .then(() => {});
   };
 
-
   const imageClick = (id) => {
     navigate(`/Recipe/${id}`);
   };
 
-  
   const profileClick = (id) => {
     navigate(`/Chefpostes/${id}`);
   };
 
   return (
     <>
-      <h1>the chef</h1>
-      onSubmit {console.log(users)}
-      {users.map((item) => (
-        <div className="homem_profile" onClick={() => profileClick(item._id)}>
-          <img src={item.imgProfile} />
-          <p>{item.username}</p>
-        </div>
-      ))}
-      <h1>the posts</h1>
-      {postes.map((item) => (
-        <>
-          <h1>{item.title}</h1>
-          <h1>
-            <img src={item.image} onClick={() => imageClick(item._id)} />
-          </h1>
-        </>
-      ))}
+      <text>the chef</text>
+      <br />
+      <div className={cx("grid", "grid-column", "grid-gap-1/5")}>
+        {users.map((item) => (
+          <div
+            className={cx("card", "HorizontalScroll")}
+            onClick={() => profileClick(item._id)}
+          >
+            <img className={cx("card-img")} src={item.imgProfile} />
+            <div className={cx("card-body")}>
+              <p className={cx("card-title")}>{item.username}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <text>the posts</text>
+      <div className={cx("grid", "grid-column", "grid-gap-1/5")}>
+        {postes.map((item) => (
+          <div className={cx("card")}>
+            <img
+              className={cx("card-img")}
+              src={item.image}
+              onClick={() => imageClick(item._id)}
+            />
+            <div className={cx("card-body")}>
+              <h3 className={cx("card-subtitle")}>{item.createdBy.username}</h3>
+              <h3 className={cx("card-title")}>{item.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
