@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Commentss from "../comment";
 
+
 function Recipe() {
   const [postes, setpostes] = useState([]);
   const [isLike, setisLike] = useState(false);
@@ -166,14 +167,17 @@ function Recipe() {
   });
 
   return (
-    <>
+    <div dir="rtl">
       <h1>{postes[0]?.createdBy.username}</h1>
       <h1>{postes[0]?.title}</h1>
       <img src={postes[0]?.image} />
-      <h1>recipe</h1>
-      {recipe}
-      <h1>ingridents</h1>
+
+      <hr />
+      <h1>المكونات</h1>
       {ingridents}
+      <hr />
+      <h1>الخطوات</h1>
+      {recipe}
       <hr />
       {!isLike ? (
         <button onClick={() => gevLike()}>like</button>
@@ -187,7 +191,7 @@ function Recipe() {
         <button onClick={() => gevFollow()}>follow</button>
       )}
       <Commentss />
-    </>
+    </div>
   );
 }
 

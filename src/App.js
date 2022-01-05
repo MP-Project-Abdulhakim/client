@@ -18,21 +18,23 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 function App() {
 
   return (
-    <div className="App">
+    <div>
       <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/like" element={<Like />} />
-        <Route exact path="/follow" element={<Follow />} />
-        <Route exact path="/myprofile" element={<MyProfile />} />
-        <Route exact path="/Profile/:id" element={<Profile />} />
-        <Route exact path="/Recipe/:id" element={<Recipe />} />
-        <Route exact path="/active/:id" element={<Active />} />
-        <Route exact path="/Chefpostes/:id" element={<Chefpostes />} />
-        <Route exact path="/add_recipe" element={<Download />} />
-      </Routes>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/like" element={<Like />} />
+          <Route exact path="/follow" element={<Follow />} />
+          <Route exact path="/myprofile" element={<MyProfile />} />
+          <Route exact path="/Profile/:id" element={<Profile />} />
+          <Route exact path="/Recipe/:id" element={<Recipe />} />
+          <Route exact path="/active/:id" element={<Active />} />
+          <Route exact path="/Chefpostes/:id" element={<Chefpostes />} />
+          <Route exact path="/add_recipe" element={<Download />} />
+        </Routes>
+      </div>
     </div>
   );
 }

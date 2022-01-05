@@ -1,45 +1,106 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from "react";
+
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
+import styles from "../../styles/Header.module.css";
 
+const cx = classNames;
 
 const Header = () => {
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
       Login: state.Login,
     };
   });
-    return (
-      <div>
+  return (
+    <nav className={cx(styles.nav)}>
+      <ul className={cx(styles.menus)}>
         {state.Login.token ? (
           <>
-            <button
-              onClick={() => {
-                localStorage.clear();
-                navigate("/");
-                window.location.reload()
-              }}
-            >
-              تسجيل خروج
-            </button>
-            <button onClick={() => navigate("/like")}>مفضلة الوصفات</button>
-            <button onClick={() => navigate("/follow")}>مفضلة الطباخين</button>
-            <button onClick={() => navigate("/myprofile")}>الملف الشخصي</button>
-            <button onClick={() => navigate("/add_recipe")}>اضافة وصفة</button>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/");
+                  window.location.reload();
+                }}
+              >
+                تسجيل خروج
+              </a>
+            </li>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/like")}
+              >
+                مفضلة الوصفات
+              </a>
+            </li>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/follow")}
+              >
+                مفضلة الطباخين
+              </a>
+            </li>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/myprofile")}
+              >
+                الملف الشخصي
+              </a>
+            </li>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/add_recipe")}
+              >
+                اضافة وصفة
+              </a>
+            </li>
           </>
         ) : (
           <>
-            <button onClick={() => navigate("/login")}>دخول</button>
-            <button onClick={() => navigate("/signup")}>تسجيل جديد</button>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/login")}
+              >
+                دخول
+              </a>
+            </li>
+            <li className={cx(styles.menu__item)}>
+              <a
+                className={cx(styles.menu__link)}
+                onClick={() => navigate("/signup")}
+              >
+                تسجيل جديد
+              </a>
+            </li>
           </>
         )}
+        <li className={cx(styles.menu__item)}>
+          <a
+            className={cx(styles.menu__link)}
+            onClick={() => navigate("/aboutus")}
+          >
+            عن الموقع
+          </a>
+        </li>
+        <li className={cx(styles.menu__item)}>
+          <a className={cx(styles.menu__link)} onClick={() => navigate("/")}>
+            الرئيسية
+          </a>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
-        <button onClick={() => navigate("/aboutus")}>عن الموقع</button>
-        <button onClick={() => navigate("/")}>الرئيسية</button>
-      </div>
-    );
-}
-
-export default Header
+export default Header;

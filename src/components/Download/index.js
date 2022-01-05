@@ -86,9 +86,9 @@ useEffect(() => {
   return (
     <div className="download">
       <form onSubmit={addPost}>
-        <label className="modelDes">title</label>
+        <label className="modelDes">العنوان</label>
         <input name="title" type="text" placeholder="title" />
-        <label className="modelDes">image</label>
+        <label className="modelDes">الصورة</label>
         <div className="upload">
           <input
             type="file"
@@ -111,7 +111,7 @@ useEffect(() => {
             <img src={image} width="80px" height="80px" />
           ))}
         </div>
-        <label className="modelDes">ingridents</label>
+        <label className="modelDes">المكونات</label>
         {add.map((i, index) => (
           <input
             name="ingridents"
@@ -123,7 +123,7 @@ useEffect(() => {
         <button onClick={() => setAddAnother([...add, []])} type="button">
           +
         </button>
-        <label className="modelDes">recipe</label>
+        <label className="modelDes">الخطوات</label>
         {recipe.map((i, index) => (
           <input
             name="recipe"
