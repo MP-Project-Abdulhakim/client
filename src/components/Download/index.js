@@ -64,7 +64,7 @@ useEffect(() => {
     );
 
     console.log(result.data);
-    
+    navigate("/myprofile");
   };
 
 
@@ -84,11 +84,11 @@ useEffect(() => {
 }, [recipe]);
 
   return (
-    <div className="download">
-      <form onSubmit={addPost}>
+    <div dir="rtl" className="download">
+      <form className="dForm" onSubmit={addPost}>
         <label className="modelDes">العنوان</label>
-        <input name="title" type="text" placeholder="title" />
-        <label className="modelDes">الصورة</label>
+        <input name="title" type="text" placeholder="العنوان" />
+        <label className="modelDes"></label>
         <div className="upload">
           <input
             type="file"
@@ -99,7 +99,11 @@ useEffect(() => {
             id="img"
             style={{ display: "none" }}
           />
-          <label htmlFor="img">تحميل صور</label>
+          <br />
+          <label className="progress" htmlFor="img">
+            اضغط هنا لتحميل الصورة
+          </label>
+
           {!(progress == 0) ? (
             <div className="progress">
               <p>يتم الرفع {progress}%</p>
@@ -111,37 +115,46 @@ useEffect(() => {
             <img src={image} width="80px" height="80px" />
           ))}
         </div>
+        <br />
         <label className="modelDes">المكونات</label>
         {add.map((i, index) => (
-          <input
-            name="ingridents"
-            type="text"
-            placeholder="ingridents"
-            onChange={(e) => updateIngredient(e, index)}
-          ></input>
+          <>
+            <input
+              name="ingridents"
+              type="text"
+              placeholder="المكونات"
+              onChange={(e) => updateIngredient(e, index)}
+            ></input>
+            <br />
+          </>
         ))}
         <button onClick={() => setAddAnother([...add, []])} type="button">
           +
         </button>
+        <br />
+        <br />
         <label className="modelDes">الخطوات</label>
         {recipe.map((i, index) => (
-          <input
-            name="recipe"
-            type="text"
-            placeholder="recipe"
-            onChange={(e) => updaterecepe(e, index)}
-          ></input>
+          <>
+            <input
+              name="recipe"
+              type="text"
+              placeholder="الخطوات"
+              onChange={(e) => updaterecepe(e, index)}
+            ></input>
+            <br />
+          </>
         ))}
         <button onClick={() => setreciper([...recipe, []])} type="button">
           +
         </button>
         <br />
+        <br />
+        <button className="submitBtn" type="submit">
+          ارسال
+        </button>
         <button onClick={() => navigate("/myprofile")} type="button">
           رجوع
-        </button>
-
-        <button className="submitBtn" type="submit">
-          submit
         </button>
       </form>
     </div>

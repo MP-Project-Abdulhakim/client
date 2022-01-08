@@ -1,7 +1,6 @@
 import React from "react";
-// import logo from "../../img/logo.png"
+import logo from "../../img/logo.png"
 import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import styles from "../../styles/Header.module.css";
@@ -18,11 +17,9 @@ const Header = () => {
   });
   return (
     <>
-      <div>
+      <div dir="rtl">
         <nav className={cx(styles.nav)}>
-          <h1 className="logo">وصفة</h1>
-          {/* <img  className="logop" src={logo} /> */}
-          <ul className={cx(styles.menus)}>
+          <ul dir="ltr" className={cx(styles.menus)}>
             {state.Login.token ? (
               <>
                 <li className={cx(styles.menu__item)}>
@@ -53,6 +50,7 @@ const Header = () => {
                     مفضلة الطباخين
                   </a>
                 </li>
+                <img className="logop" src={logo} />
                 <li className={cx(styles.menu__item)}>
                   <a
                     className={cx(styles.menu__link)}
@@ -67,6 +65,14 @@ const Header = () => {
                     onClick={() => navigate("/add_recipe")}
                   >
                     اضافة وصفة
+                  </a>
+                </li>
+                <li className={cx(styles.menu__item)}>
+                  <a
+                    className={cx(styles.menu__link)}
+                    onClick={() => navigate("/")}
+                  >
+                    الرئيسية
                   </a>
                 </li>
               </>
@@ -88,24 +94,25 @@ const Header = () => {
                     تسجيل جديد
                   </a>
                 </li>
+                <img className="logop" src={logo} />
+                <li className={cx(styles.menu__item)}>
+                  <a
+                    className={cx(styles.menu__link)}
+                    onClick={() => navigate("/aboutus")}
+                  >
+                    عن الموقع
+                  </a>
+                </li>
+                <li className={cx(styles.menu__item)}>
+                  <a
+                    className={cx(styles.menu__link)}
+                    onClick={() => navigate("/")}
+                  >
+                    الرئيسية
+                  </a>
+                </li>
               </>
             )}
-            <li className={cx(styles.menu__item)}>
-              <a
-                className={cx(styles.menu__link)}
-                onClick={() => navigate("/aboutus")}
-              >
-                عن الموقع
-              </a>
-            </li>
-            <li className={cx(styles.menu__item)}>
-              <a
-                className={cx(styles.menu__link)}
-                onClick={() => navigate("/")}
-              >
-                الرئيسية
-              </a>
-            </li>
           </ul>
         </nav>
       </div>

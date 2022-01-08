@@ -160,7 +160,9 @@ function Recipe() {
     return (
       <form action="">
         <input type="checkbox" />
-        <label htmlFor="checkbox">{item}</label>
+        <label  htmlFor="checkbox">
+          {item}
+        </label>
       </form>
     );
   });
@@ -170,15 +172,13 @@ function Recipe() {
   });
 
   return (
-    <div dir="rtl">
+    <div className="hoemDiv" dir="rtl">
       <div className={cx("card-detail")}>
-        {/* <h1>{postes[0]?.createdBy.username}</h1>
-        <h1>{postes[0]?.title}</h1> */}
         <img className={cx("card-img")} src={postes[0]?.image} />
 
         <div>
           <h3 className={cx("card-title")}>{postes[0]?.title}</h3>
-          <h4 >المكونات</h4>
+          <h4>المكونات</h4>
           <hr />
           {ingridents}
           <br></br>
@@ -187,21 +187,22 @@ function Recipe() {
           <hr />
           {recipe}
         </div>
-        
-        {!isLike ? (
-          <button onClick={() => gevLike()}>like</button>
-        ) : (
-          <button onClick={() => removeLike()}>remove like</button>
-        )}
-        
-        {isFollow ? (
-          <button onClick={() => removeFollow()}>remove follow</button>
-        ) : (
-          <button onClick={() => gevFollow()}>follow</button>
-        )}
-        
-        <Commentss />
+        <div>
+          {!isLike ? (
+            <button onClick={() => gevLike()}>تفضيل</button>
+          ) : (
+            <button onClick={() => removeLike()}>الغاء التفضيل</button>
+          )}
+
+          {isFollow ? (
+            <button onClick={() => removeFollow()}>متابعة</button>
+          ) : (
+            <button onClick={() => gevFollow()}>الغاء المتابعة</button>
+          )}
+        </div>
+        <hr />
       </div>
+      <Commentss />
     </div>
   );
 }

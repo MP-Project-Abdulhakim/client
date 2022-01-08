@@ -101,8 +101,10 @@
 @media screen and (min-width: 992px) {
   .card-detail {
     display: grid;
+    /* justify-content: center; */
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.5rem;
+
   }
 
   .card-detail .card-img {
@@ -143,4 +145,12 @@
   font-size: 10pt;
   letter-spacing: 0.5px;
   margin-left: 15px;
+}
+
+
+.card-detaill{
+        display: grid;
+      
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
 }
