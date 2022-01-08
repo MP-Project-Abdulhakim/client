@@ -56,25 +56,25 @@ function Home() {
   };
 
   return (
-    <>
-      <text>the chef</text>
+    <div className="hoemDiv" dir="rtl">
+      <text>الطباخين</text>
       <br />
+
       <div className="HorizontalScroll">
         {users.map((item) => (
           <div onClick={() => profileClick(item._id)}>
-           
             <img className="itm" src={item.imgProfile} />
 
             <div className="card-bodyy">
-              <h6 className="card-titlee">
-                {item.username}
-              </h6>
+              <h6 className="card-titlee">{item.username}</h6>
             </div>
           </div>
         ))}
       </div>
 
-      <text>the posts</text>
+      <hr />
+      <br />
+      <text>الوصفات</text>
       <div className={cx("grid", "grid-column", "grid-gap-1/5")}>
         {postes.map((item) => (
           <div className={cx("card")}>
@@ -90,7 +90,7 @@ function Home() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

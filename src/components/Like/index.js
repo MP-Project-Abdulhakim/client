@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import grid from "../../styles/grid.css";
+import classNames from "classnames";
+import "../Like/style.css";
+const cx = classNames.bind(grid);
 
 function Like() {
   const [users, setUsers] = useState([]);
@@ -39,27 +43,32 @@ function Like() {
       .then(() => {});
   };
 
-
-          const imageClick = (id) => {
-            navigate(`/Recipe/${id}`);
-          };
+  const imageClick = (id) => {
+    navigate(`/Recipe/${id}`);
+  };
 
   return (
-    <>
-      <h1>hi likes</h1>
-      {console.log(users)}
+    <div className="hoemDiv" dir="rtl">
+      <h3>مفضلة الوصفات</h3>
       {users?.map((item) => (
         <>
-          <p>name</p>
-          <h3>{item.postId.title}</h3>
-          <img
-            src={item.postId.image}
-            onClick={() => imageClick(item.postId._id)}
-          />
-          ;
+          <div></div>
+          <br></br>
+          <hr />
+          <br></br>
+          <div className={cx("card-detail")}>
+            <div>
+              <h3>{item.postId.title}</h3>
+              <img
+                className={cx("card-img")}
+                src={item.postId.image}
+                onClick={() => imageClick(item.postId._id)}
+              />
+            </div>
+          </div>
         </>
       ))}
-    </>
+    </div>
   );
 }
 

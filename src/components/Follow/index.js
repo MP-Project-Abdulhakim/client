@@ -42,16 +42,19 @@ function Follow() {
 
 
   return (
-    <>
-      <h1>you foollow</h1>
-
+    <div className="hoemDiv" dir="rtl">
+      <div>
+        <h3 dir="rtl">انت تتابع</h3>
+      </div>
+      <br />
+      <hr />
+      <br />
       {users?.following?.map((item) => (
         <div onClick={() => chefPostesClick(item._id)}>
-          <p>name</p>
-          <h3>{item.username}</h3>
+          <li>{item.username}</li>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

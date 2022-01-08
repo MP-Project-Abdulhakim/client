@@ -17,7 +17,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [emilOrUserName, setEmilOrUserName] = useState("");
-  // const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -129,7 +128,6 @@ const Login = () => {
       ) : (
         <main className="panel">
           <div>
-            <h2>Login</h2>
             {message ? <div className="message">{message}</div> : ""}
             <form
               className="input"
@@ -155,16 +153,9 @@ const Login = () => {
               </p>
               <input id="submitButton" type="submit" value="Submit" />
             </form>
-            <button
-              type="button"
-              className="login-with-google-btn"
-              onClick={googleLogin}
-            >
-              Or Login with Google
-            </button>
+            
           </div>
           <div className="signUpDiv">
-            <h2 className="gotosignUp">Hello, friend!</h2>
             <p className="gotosignUp">
               if you haven't registered yet, sign up to receive our weekly
               offers

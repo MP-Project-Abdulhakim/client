@@ -1,10 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
-import Header from "../Header";
+import grid from "../../styles/grid.css";
+import classNames from "classnames";
+import "../Like/style.css";
+const cx = classNames.bind(grid);
+
+
 
 function MyProfile() {
   const [users, setUsers] = useState([]);
@@ -115,13 +120,11 @@ useEffect(() => {
 
 
   return (
-    <>
+    <div className="hoemDiv" dir="rtl">
       {users.map((item) => (
         <>
-          <h1>{item.username} - Profile</h1>
+          <h3>{item.username}</h3>
           <br />
-          {/* <p>followed {}</p> */}
-          {/* <img src={item.imgProfile} /> */}
         </>
       ))}
 
@@ -130,12 +133,12 @@ useEffect(() => {
           setEdit(true);
         }}
       >
-        Edit profile
+        تعديل البيانات
       </button>
       <br />
       {edit ? (
         <form onSubmit={updateUSer}>
-          <label className="modelDes">user name</label>
+          <label className="modelDes">الاسم</label>
           <input
             name="username"
             type="text"
@@ -143,21 +146,21 @@ useEffect(() => {
             defaultValue={users[0].username}
           />
 
-          <label className="modelDes">Email</label>
+          <label className="modelDes">البريد</label>
           <input
             name="email"
             type="email"
             placeholder="email"
             defaultValue={users[0].email}
           />
-          <label className="modelDes">password</label>
+          <label className="modelDes">الرقم السري</label>
           <input
             name="password"
             type="password"
             placeholder="password"
             defaultValue={users[0].password}
           />
-          <label className="modelDes">img profile</label>
+          <label className="modelDes">صورة الملف الشخصي</label>
 
           <div className="upload">
             <input
@@ -190,30 +193,41 @@ useEffect(() => {
               setEdit(false);
             }}
           >
-            cansle
+            الغاء
           </button>
           <button className="submitBtn" type="submit">
-            submit
+            ارسال
           </button>
         </form>
       ) : (
         <> </>
       )}
       <br />
+      <h3>وصفاتك</h3>
+      <hr/>
       {postes.map((item) => (
         <>
-          {/* <h1>{item.createdBy.username}</h1> */}
-          <p>following {users?.following?.length}</p>
-          <p>followed by {users?.followedBy?.length}</p>
+          {/* <p>انت تتابع {users?.following?.length}</p>
+          <p>المتابعين {users?.followedBy?.length}</p> */}
+
           <br />
-          <h1>your postes</h1>
-          <h1>{item.title}</h1>
-          <h1>
-            <img src={item.image} onClick={() => imageClick(item._id)} />
-          </h1>
+      
+
+       
+          <br />
+          <div className={cx("card-detail")}>
+            <div>
+              <h3>{item.title}</h3>
+              <img
+                className={cx("card-img")}
+                src={item.image}
+                onClick={() => imageClick(item._id)}
+              />
+            </div>
+          </div>
         </>
       ))}
-    </>
+    </div>
   );
 }
 

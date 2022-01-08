@@ -61,7 +61,7 @@ useEffect(() => {
 
 
   return (
-    <div>
+    <div className="hoemDiv" dir="rtl">
       <form className="comments_form" onSubmit={sendComment}>
         <div className="commentHead">
           <h3>إضافة تعليق</h3>
@@ -72,7 +72,8 @@ useEffect(() => {
         <div className="commentTail">
           <img
             src="https://www.nicepng.com/png/full/522-5226533_get-beyond-the-usual-suspects-profile-pic-icon.png"
-            alt="" width="200"
+            alt=""
+            width="200"
           />
           <textarea
             dir="rtl"
@@ -96,7 +97,6 @@ useEffect(() => {
                     <img
                       src="https://www.nicepng.com/png/full/522-5226533_get-beyond-the-usual-suspects-profile-pic-icon.png"
                       alt=""
-                      
                     />
                     <div className="realcommentData">
                       <h3>{comment.createdBy.username}</h3>
