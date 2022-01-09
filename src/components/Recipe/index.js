@@ -1,17 +1,20 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Commentss from "../comment";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
+import './style.css'
 
 const cx = classNames.bind(grid);
 
 function Recipe() {
+  const Navigate = useNavigate();
+
   const [postes, setpostes] = useState([]);
   const [isLike, setisLike] = useState(false);
-  const [isFollow, setFollow] = useState([]);
+  const [isFollow, setFollow] = useState(false);
 
   const param = useParams();
   useEffect(() => {
@@ -62,6 +65,7 @@ function Recipe() {
       })
       .catch((err) => {
         console.log(err);
+        Navigate("/login");
       });
   };
 
@@ -89,11 +93,10 @@ function Recipe() {
       .then((response) => {
         if (postes[0]?.createdBy._id!=null) {
           console.log(
-            response.data.filter(
-              (user) => user.username == postes[0]?.createdBy._id
-            )[0].followedBy
+            response.data
+              .filter((user) => user.username == postes[0]?.createdBy._id)
           );
-          console.log(state.Login.id);
+          console.log(response.data);
           if (
             response.data
               .filter((user) => user.username == postes[0]?.createdBy._id)[0]
@@ -104,6 +107,7 @@ function Recipe() {
           } else {
             console.log("not followed");
              setFollow(false);
+             
           }
         }
       })
@@ -185,7 +189,7 @@ function Recipe() {
           <br></br>
           <h4>الخطوات</h4>
           <hr />
-          {recipe}
+          <div className="rec">{recipe}</div>
         </div>
         <div>
           {!isLike ? (
@@ -194,10 +198,10 @@ function Recipe() {
             <button onClick={() => removeLike()}>الغاء التفضيل</button>
           )}
 
-          {isFollow ? (
-            <button onClick={() => removeFollow()}>متابعة</button>
+          {!isFollow ? (
+            <button onClick={() => gevFollow()}>متابعة</button>
           ) : (
-            <button onClick={() => gevFollow()}>الغاء المتابعة</button>
+            <button onClick={() => removeFollow()}>الغاء المتابعة</button>
           )}
         </div>
         <hr />

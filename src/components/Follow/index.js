@@ -25,8 +25,12 @@ function Follow() {
     
       )
       .then((response) => {
-        console.log(response.data);
-        setUsers(response.data[0]);
+        console.log(
+          response.data.filter((user) => user.username == state.Login.id)
+        );
+        setUsers(
+          response.data.filter((user) => user.username == state.Login.id)[0]
+        );
         console.log(response.data);
       })
       .catch((err) => {

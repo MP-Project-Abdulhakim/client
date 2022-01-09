@@ -66,6 +66,7 @@ useEffect(() => {
      axios
        .get("http://localhost:5000/getPosts")
        .then((response) => {
+         console.log(response.data);
          setpostes(
            response.data.filter((post) => post.createdBy._id == state.Login.id)
          );
@@ -92,13 +93,14 @@ useEffect(() => {
 
   const updateUSer = async (e) => {
     e.preventDefault();
+    console.log(images);
     console.log();
     const result = await axios.put(
       `http://localhost:5000/updat/${state.Login.id}`,
       {
         password: e.target.password.value,
         username: e.target.username.value,
-        imgProfile: images[0],
+        imgProfile: images,
         email: e.target.email.value,
       },
       { headers: { Authorization: `Bearer ${state.Login.token}` } }
@@ -181,9 +183,9 @@ useEffect(() => {
           </div>
 
           <div className="imagesPost">
-            {images?.map((image) => (
+            {/* {images?.map((image) => (
               <img src={image} width="80px" height="80px" />
-            ))}
+            ))} */}
           </div>
 
           <br />
@@ -204,16 +206,15 @@ useEffect(() => {
       )}
       <br />
       <h3>وصفاتك</h3>
-      <hr/>
+      <hr />
       {postes.map((item) => (
         <>
+          
           {/* <p>انت تتابع {users?.following?.length}</p>
           <p>المتابعين {users?.followedBy?.length}</p> */}
 
           <br />
-      
 
-       
           <br />
           <div className={cx("card-detail")}>
             <div>

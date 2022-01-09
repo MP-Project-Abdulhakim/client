@@ -53,7 +53,6 @@ const Signup = () => {
 
   return (
     <div className="Signup">
-
       {state.token ? (
         <h1>
           <div className="centerWrapper">
@@ -94,7 +93,7 @@ const Signup = () => {
               className="btnBK"
               onClick={() => navigate("/login")}
             >
-              or go to login
+              login
             </button>
           </div>
           <div className="signupDiv">
@@ -107,7 +106,11 @@ const Signup = () => {
                 getSignup(e);
               }}
             >
-              <select onChange={(e) => setRole(e.target.value)} required>
+              <select
+                className="selecter"
+                onChange={(e) => setRole(e.target.value)}
+                required
+              >
                 <option value="61c817269c72cd8cbad62eff">User</option>
                 <option value="61cc4465387a78a3e5b8d772">Chef</option>
               </select>

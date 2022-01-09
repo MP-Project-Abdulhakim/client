@@ -11,8 +11,6 @@ const MySwal = withReactContent(Swal);
 const popupTools = require("popup-tools");
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-
-
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -153,7 +151,6 @@ const Login = () => {
               </p>
               <input id="submitButton" type="submit" value="Submit" />
             </form>
-            
           </div>
           <div className="signUpDiv">
             <p className="gotosignUp">

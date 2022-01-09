@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../Header";
 import "./style.css";
 import classNames from "classnames";
 import grid from "../../styles/grid.css";
