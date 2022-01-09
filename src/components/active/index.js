@@ -1,15 +1,3 @@
-// import React from 'react'
-
-// const Active = () => {
-//     return (
-//         <div>
-//        <h1>active</h1>
-//         </div>
-//     )
-// }
-
-// export default Active
-
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -49,31 +37,25 @@ const Active = () => {
     }
   };
   return (
-    <div
-      borderRadius="3px"
-      border="solid silver"
-      textAlign="center"
-      w="300px"
-      mt="100px"
-      textAlign="center"
-      ml="500px"
-      bg="#fffb"
-      color="black"
-    >
-      <h1>verify your account</h1>
-      <div paddingLeft="25px" m="10px">
-        <ReactCodeInput
-          position="center"
-          fields={4}
-          onComplete={(e) => {
-            setCode(e);
-          }}
-        />
-      </div>
-      <button id="resetPasswordButton" bg="#777" onClick={verifyAccount}>
-        {" "}
-        Active
-      </button>
+    <div className="activee">
+     
+    
+      
+        <h3>تأكيد الحساب</h3>
+        <div >
+          <ReactCodeInput
+            position="center"
+            fields={4}
+            onComplete={(e) => {
+              setCode(e);
+            }}
+          />
+        </div>
+        <button id="resetPasswordButton" bg="#777" onClick={verifyAccount}>
+          {" "}
+          تفعيل
+        </button>
+      
     </div>
   );
 };

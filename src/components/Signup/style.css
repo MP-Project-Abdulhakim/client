@@ -1,3 +1,11 @@
+.Signup{
+  margin-top: 100px;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .signupWrapper {
   height: 100vh;
   display: flex;
@@ -20,7 +28,7 @@ main.signupPanel {
 
 }
 .signupDiv{
-  margin-left: 60px;
+  margin-left: 100px;
   border-left: 2px solid black;
   padding-left: 20px;
 }
@@ -180,4 +188,11 @@ main.signupPanel #loginButton {
     margin: 0;
     box-shadow: none;
   }
+}
+
+
+
+.selecter{
+  height: 40px;
+  border-radius: 15px; 
 }

@@ -19,7 +19,10 @@ function Profile() {
     getPostes();
   }, []);
 
+
+
   const getPostes = () => {
+    
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
@@ -35,6 +38,9 @@ function Profile() {
       })
       .then(() => {});
   };
+
+
+
 
   const imageClick = (id) => {
     navigate(`/Recipe/${id}`);
@@ -71,9 +77,9 @@ function Profile() {
         <>
           <div>
             <h3>{item.createdBy.username}</h3>
-            <h6> يتابع {users?.following?.length} </h6>
+            {/* <h6> يتابع {users?.following?.length} </h6>
             <h6>يتابعه {users?.followedBy?.length}</h6>
-            {console.log(users.username)}
+            {console.log(users.username)} */}
           </div>
           <br></br>
           <hr />
