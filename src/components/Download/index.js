@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import './style.css'
 import { storage } from "../../Firebase";
@@ -104,7 +104,7 @@ useEffect(() => {
             اضغط هنا لتحميل الصورة
           </label>
 
-          {!(progress == 0) ? (
+          {!(progress === 0) ? (
             <div className="progress">
               <p>يتم الرفع {progress}%</p>
             </div>
@@ -112,7 +112,7 @@ useEffect(() => {
         </div>
         <div className="imagesPost">
           {images?.map((image) => (
-            <img src={image} width="80px" height="80px" />
+            <img src={image} alt="img" width="80px" height="80px" />
           ))}
         </div>
         <br />

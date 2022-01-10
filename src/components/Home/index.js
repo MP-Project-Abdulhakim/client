@@ -36,7 +36,7 @@ function Home() {
       .then((response) => {
         setusers(
           response.data.filter(
-            (user) => user.role == "61cc4465387a78a3e5b8d772"
+            (user) => user.role === "61cc4465387a78a3e5b8d772"
           )
         );
       })
@@ -62,7 +62,7 @@ function Home() {
       <div className="HorizontalScroll">
         {users.map((item) => (
           <div onClick={() => profileClick(item._id)}>
-            <img className="itm" src={item.imgProfile} />
+            <img className="itm" src={item.imgProfile} alt="img" />
 
             <div className="card-bodyy">
               <h6 className="card-titlee">{item.username}</h6>
@@ -80,6 +80,7 @@ function Home() {
             <img
               className={cx("card-img")}
               src={item.image}
+              alt="img"
               onClick={() => imageClick(item._id)}
             />
             <div className={cx("card-body")}>
