@@ -1,4 +1,4 @@
-import "./App.css";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Like from "./components/Like";
 import Follow from "./components/Follow";
 import MyProfile from "./components/MyProfile";
+import "./App.css";
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
 
