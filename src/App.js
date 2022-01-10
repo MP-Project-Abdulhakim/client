@@ -13,10 +13,9 @@ import Like from "./components/Like";
 import Follow from "./components/Follow";
 import MyProfile from "./components/MyProfile";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
-
   return (
     <div>
       <Header />
