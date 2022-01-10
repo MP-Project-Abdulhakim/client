@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -7,9 +5,8 @@ import PasswordChecklist from "react-password-checklist";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 import Swal from "sweetalert2";
-
 import "./style.css";
-import Header from "../Header";
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const MySwal = withReactContent(Swal);
 const Signup = () => {
@@ -24,17 +21,15 @@ const Signup = () => {
     return {
       token: state.Login.token,
     };
-  
-    
   });
-  
+
   const getSignup = async () => {
     setMessage("");
     const res = await axios.post(`${BASE_URL}/signup`, {
       username: username,
       email: email,
       password: password,
-      role: role
+      role: role,
     });
     console.log(res);
     if (res.status === 201) {
