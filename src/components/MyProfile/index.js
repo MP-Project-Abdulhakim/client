@@ -77,6 +77,7 @@ function MyProfile() {
       headers: { Authorization: `Bearer ${state.Login.token}` },
     });
     getPostes();
+    // navigate(`/myprofile`);
   };
 
   const getUsers = () => {
