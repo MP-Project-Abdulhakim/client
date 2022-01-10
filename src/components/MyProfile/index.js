@@ -9,12 +9,10 @@ import classNames from "classnames";
 import "../Like/style.css";
 const cx = classNames.bind(grid);
 
-
-
 function MyProfile() {
   const [users, setUsers] = useState([]);
- const [postes, setpostes] = useState([]);
-
+  const [postes, setpostes] = useState([]);
+  
   const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const state = useSelector((state) => {
@@ -23,37 +21,35 @@ function MyProfile() {
     };
   });
 
+  const [progress, setProgress] = useState(0);
+  const [images, setImages] = useState([]);
 
-const [progress, setProgress] = useState(0);
-const [images, setImages] = useState([]);
-
-const uploadPictures = (e) => {
-  let image = e.target.files[0];
-  const dataType = image.name.match(/\.(jpe?g|png|gif)$/gi);
-  if (image == null || dataType == null) return;
-  const storageRef = ref(storage, `images/${image.name}`);
-  const uploadImamge = uploadBytesResumable(storageRef, image);
-  uploadImamge.on(
-    "state_changed",
-    (snapshot) => {
-      const progress = Math.round(
-        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      );
-      setProgress(progress);
-    },
-    (err) => console.log(err),
-    () => {
-      getDownloadURL(uploadImamge.snapshot.ref).then((url) => {
-        setImages(url);
-        console.log(url);
-      });
-    }
-  );
-};
-useEffect(() => {
-  setProgress(0);
-}, [images]);
-
+  const uploadPictures = (e) => {
+    let image = e.target.files[0];
+    const dataType = image.name.match(/\.(jpe?g|png|gif)$/gi);
+    if (image == null || dataType == null) return;
+    const storageRef = ref(storage, `images/${image.name}`);
+    const uploadImamge = uploadBytesResumable(storageRef, image);
+    uploadImamge.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadImamge.snapshot.ref).then((url) => {
+          setImages(url);
+          console.log(url);
+        });
+      }
+    );
+  };
+  useEffect(() => {
+    setProgress(0);
+  }, [images]);
 
   console.log(state);
   useEffect(() => {
@@ -61,23 +57,26 @@ useEffect(() => {
     getPostes();
   }, []);
 
+  const getPostes = () => {
+    axios
+      .get("http://localhost:5000/getPosts")
+      .then((response) => {
+        console.log(response.data);
+        setpostes(
+          response.data.filter((post) => post.createdBy._id == state.Login.id)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-   const getPostes = () => {
-     axios
-       .get("http://localhost:5000/getPosts")
-       .then((response) => {
-         console.log(response.data);
-         setpostes(
-           response.data.filter((post) => post.createdBy._id == state.Login.id)
-         );
-       })
-       .catch((err) => {
-         console.log(err);
-       });
-   };
-
-
-
+  const deletePostes = (id) => {
+    axios.delete(`http://localhost:5000/deletePost/${id}`, {
+      headers: { Authorization: `Bearer ${state.Login.token}` },
+    });
+    getPostes()
+  };
 
   const getUsers = () => {
     axios
@@ -110,16 +109,11 @@ useEffect(() => {
     getUsers();
   };
 
-  useEffect(() => {
-  }, [users]);
+  useEffect(() => {}, [users]);
 
- const imageClick = (id) => {
-   navigate(`/Recipe/${id}`);
- };
-
- 
-
-
+  const imageClick = (id) => {
+    navigate(`/Recipe/${id}`);
+  };
 
   return (
     <div className="hoemDiv" dir="rtl">
@@ -209,7 +203,6 @@ useEffect(() => {
       <hr />
       {postes.map((item) => (
         <>
-          
           {/* <p>انت تتابع {users?.following?.length}</p>
           <p>المتابعين {users?.followedBy?.length}</p> */}
 
@@ -218,7 +211,10 @@ useEffect(() => {
           <br />
           <div className={cx("card-detail")}>
             <div>
-              <h3>{item.title}</h3>
+              <div>
+                <h3>{item.title}</h3>
+                <button onClick={()=>deletePostes(item._id)}>حذف الوصفة</button>
+              </div>
               <img
                 className={cx("card-img")}
                 src={item.image}
