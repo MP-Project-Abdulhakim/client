@@ -1,10 +1,9 @@
 import React from "react";
-import logo from "../../img/logo.png"
+import logo from "../../img/logo.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import styles from "../../styles/Header.module.css";
-
 
 const cx = classNames;
 
@@ -23,7 +22,7 @@ const Header = () => {
             {state.Login.token ? (
               <>
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => {
                       localStorage.clear();
@@ -32,85 +31,87 @@ const Header = () => {
                     }}
                   >
                     تسجيل خروج
-                  </a>
+                  </p>
                 </li>
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => navigate("/like")}
                   >
                     مفضلة الوصفات
-                  </a>
+                  </p>
                 </li>
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => navigate("/follow")}
                   >
                     مفضلة الطباخين
-                  </a>
+                  </p>
                 </li>
-                <img className="logop" src={logo} />
+                <img className="logop" alt="" src={logo} />
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => navigate("/myprofile")}
                   >
                     الملف الشخصي
-                  </a>
+                  </p>
                 </li>
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => navigate("/add_recipe")}
                   >
                     اضافة وصفة
-                  </a>
+                  </p>
                 </li>
                 <li className={cx(styles.menu__item)}>
-                  <a
+                  <p
                     className={cx(styles.menu__link)}
                     onClick={() => navigate("/")}
                   >
                     الرئيسية
-                  </a>
+                  </p>
                 </li>
               </>
             ) : (
               <>
-                <li className={cx(styles.menu__item)}>
-                  <a
-                    className={cx(styles.menu__link)}
-                    onClick={() => navigate("/login")}
-                  >
-                    دخول
-                  </a>
-                </li>
-                <li className={cx(styles.menu__item)}>
-                  <a
-                    className={cx(styles.menu__link)}
-                    onClick={() => navigate("/signup")}
-                  >
-                    تسجيل جديد
-                  </a>
-                </li>
-                <img className="logop" src={logo} />
-                <li className={cx(styles.menu__item)}>
-                  <a
-                    className={cx(styles.menu__link)}
-                    onClick={() => navigate("/aboutus")}
-                  >
-                    عن الموقع
-                  </a>
-                </li>
-                <li className={cx(styles.menu__item)}>
-                  <a
-                    className={cx(styles.menu__link)}
-                    onClick={() => navigate("/")}
-                  >
-                    الرئيسية
-                  </a>
-                </li>
+                <ul>
+                  <li className={cx(styles.menu__item)}>
+                    <p
+                      className={cx(styles.menu__link)}
+                      onClick={() => navigate("/login")}
+                    >
+                      دخول
+                    </p>
+                  </li>
+                  <li className={cx(styles.menu__item)}>
+                    <p
+                      className={cx(styles.menu__link)}
+                      onClick={() => navigate("/signup")}
+                    >
+                      تسجيل جديد
+                    </p>
+                  </li>
+                  <img className="logop" alt="" src={logo} />
+                  <li className={cx(styles.menu__item)}>
+                    <p
+                      className={cx(styles.menu__link)}
+                      onClick={() => navigate("/aboutus")}
+                    >
+                      عن الموقع
+                    </p>
+                  </li>
+                  <li className={cx(styles.menu__item)}>
+                    <p
+                      className={cx(styles.menu__link)}
+                      onClick={() => navigate("/")}
+                    >
+                      الرئيسية
+                    </p>
+                  </li>
+                </ul>
               </>
             )}
           </ul>
