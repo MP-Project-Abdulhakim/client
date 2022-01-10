@@ -8,7 +8,8 @@ const Commentss = () => {
   const [noComment, setNoComment] = useState(0);
   const [commments, setcommments] = useState([]);
 useEffect(() => {
-    getComments()
+  getComments();
+  // eslint-disable-next-line
 }, [])
 
 

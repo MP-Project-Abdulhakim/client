@@ -18,6 +18,7 @@ const Active = () => {
           id,
           code,
         });
+        console.log(result);
         Swal.fire({
           position: "center",
           icon: "success",

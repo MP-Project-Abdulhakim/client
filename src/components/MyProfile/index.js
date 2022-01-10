@@ -12,7 +12,7 @@ const cx = classNames.bind(grid);
 function MyProfile() {
   const [users, setUsers] = useState([]);
   const [postes, setpostes] = useState([]);
-  
+
   const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const state = useSelector((state) => {
@@ -75,7 +75,7 @@ function MyProfile() {
     axios.delete(`http://localhost:5000/deletePost/${id}`, {
       headers: { Authorization: `Bearer ${state.Login.token}` },
     });
-    getPostes()
+    getPostes();
   };
 
   const getUsers = () => {
@@ -213,7 +213,9 @@ function MyProfile() {
             <div>
               <div>
                 <h3>{item.title}</h3>
-                <button onClick={()=>deletePostes(item._id)}>حذف الوصفة</button>
+                <button onClick={() => deletePostes(item._id)}>
+                  حذف الوصفة
+                </button>
               </div>
               <img
                 className={cx("card-img")}
