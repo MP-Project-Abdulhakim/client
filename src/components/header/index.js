@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../img/logo.png";
+import logo from "../../img/logo.webp";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
