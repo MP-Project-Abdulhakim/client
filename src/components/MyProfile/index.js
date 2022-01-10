@@ -63,7 +63,7 @@ function MyProfile() {
       .then((response) => {
         console.log(response.data);
         setpostes(
-          response.data.filter((post) => post.createdBy._id == state.Login.id)
+          response.data.filter((post) => post.createdBy._id === state.Login.id)
         );
       })
       .catch((err) => {
