@@ -55,6 +55,7 @@ function MyProfile() {
   useEffect(() => {
     getUsers();
     getPostes();
+    // eslint-disable-next-line
   }, []);
 
   const getPostes = () => {
@@ -82,7 +83,7 @@ function MyProfile() {
     axios
       .get("http://localhost:5000/getusers")
       .then((response) => {
-        setUsers(response.data.filter((users) => users._id == state.Login.id));
+        setUsers(response.data.filter((users) => users._id === state.Login.id));
         console.log(response.data);
       })
       .catch((err) => {
@@ -169,7 +170,7 @@ function MyProfile() {
               style={{ display: "none" }}
             />
             <label htmlFor="img">تحميل صور</label>
-            {!(progress == 0) ? (
+            {!(progress === 0) ? (
               <div className="progress">
                 <p>يتم الرفع {progress}%</p>
               </div>
@@ -220,6 +221,7 @@ function MyProfile() {
               <img
                 className={cx("card-img")}
                 src={item.image}
+                alt="img"
                 onClick={() => imageClick(item._id)}
               />
             </div>

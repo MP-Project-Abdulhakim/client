@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
 import "../Like/style.css";
@@ -20,6 +20,7 @@ function Like() {
   console.log(state);
   useEffect(() => {
     getUsers();
+    // eslint-disable-next-line
   }, []);
 
   const getUsers = () => {
@@ -33,7 +34,7 @@ function Like() {
       )
       .then((response) => {
         setUsers(
-          response.data.filter((users) => users.userId == state.Login.id)
+          response.data.filter((users) => users.userId === state.Login.id)
         );
         console.log(response.data);
       })
@@ -62,6 +63,7 @@ function Like() {
               <img
                 className={cx("card-img")}
                 src={item.postId.image}
+                alt="img"
                 onClick={() => imageClick(item.postId._id)}
               />
             </div>

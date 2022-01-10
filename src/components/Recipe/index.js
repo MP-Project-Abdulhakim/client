@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import {  useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Commentss from "../comment";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
@@ -19,7 +19,7 @@ function Recipe() {
   const param = useParams();
   useEffect(() => {
     getPostes();
-    
+    // eslint-disable-next-line
   }, []);
 
   const state = useSelector((state) => {
@@ -33,11 +33,11 @@ function Recipe() {
       .get("http://localhost:5000/getPosts")
       .then((response) => {
         console.log(response.data);
-        setpostes(response.data.filter((post) => post._id == param.id));
+        setpostes(response.data.filter((post) => post._id === param.id));
 
         let check = response.data
-          .filter((post) => post._id == param.id)[0]
-          .like.map((i) => i.userId == state.Login.id);
+          .filter((post) => post._id === param.id)[0]
+          .like.map((i) => i.userId === state.Login.id);
 
         if (check.includes(true)) {
           setisLike(true);
@@ -94,12 +94,12 @@ function Recipe() {
         if (postes[0]?.createdBy._id!=null) {
           console.log(
             response.data
-              .filter((user) => user.username == postes[0]?.createdBy._id)
+              .filter((user) => user.username === postes[0]?.createdBy._id)
           );
           console.log(response.data);
           if (
             response.data
-              .filter((user) => user.username == postes[0]?.createdBy._id)[0]
+              .filter((user) => user.username === postes[0]?.createdBy._id)[0]
               .followedBy.includes(state.Login.id)
           ) {
             console.log("im followed");
@@ -118,6 +118,7 @@ function Recipe() {
 
   useEffect(() => {
     getUsersFollowing();
+    // eslint-disable-next-line
   }, [postes]);
 
 
@@ -178,7 +179,7 @@ function Recipe() {
   return (
     <div className="hoemDiv" dir="rtl">
       <div className={cx("card-detail")}>
-        <img className={cx("card-img")} src={postes[0]?.image} />
+        <img className={cx("card-img")} src={postes[0]?.image} alt="img" />
 
         <div>
           <h3 className={cx("card-title")}>{postes[0]?.title}</h3>

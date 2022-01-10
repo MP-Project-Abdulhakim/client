@@ -8,7 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
 const MySwal = withReactContent(Swal);
-const popupTools = require("popup-tools");
+// const popupTools = require("popup-tools");
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Login = () => {
@@ -58,26 +58,26 @@ const Login = () => {
     }
   };
 
-  const googleLogin = () => {
-    popupTools.popup(
-      `${BASE_URL}/auth/google`,
-      "Google Login",
-      { width: 400, height: 600 },
-      function (err, user) {
-        if (err) {
-          console.log(err);
-        } else {
-          dispatch(
-            Loginn({
-              role: user.data.result.role,
-              token: user.data.token,
-            })
-          );
-          navigate("/");
-        }
-      }
-    );
-  };
+  // const googleLogin = () => {
+  //   popupTools.popup(
+  //     `${BASE_URL}/auth/google`,
+  //     "Google Login",
+  //     { width: 400, height: 600 },
+  //     function (err, user) {
+  //       if (err) {
+  //         console.log(err);
+  //       } else {
+  //         dispatch(
+  //           Loginn({
+  //             role: user.data.result.role,
+  //             token: user.data.token,
+  //           })
+  //         );
+  //         navigate("/");
+  //       }
+  //     }
+  //   );
+  // };
 
   const forgotPassword = async () => {
     const { value: email } = await MySwal.fire({

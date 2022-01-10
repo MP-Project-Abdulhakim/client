@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Follow() {
   const [users, setUsers] = useState([]);
@@ -16,6 +16,7 @@ function Follow() {
   console.log(state);
   useEffect(() => {
     getfollowed();
+    // eslint-disable-next-line
   }, []);
 
   const getfollowed = () => {
@@ -26,10 +27,10 @@ function Follow() {
       )
       .then((response) => {
         console.log(
-          response.data.filter((user) => user.username == state.Login.id)
+          response.data.filter((user) => user.username === state.Login.id)
         );
         setUsers(
-          response.data.filter((user) => user.username == state.Login.id)[0]
+          response.data.filter((user) => user.username === state.Login.id)[0]
         );
         console.log(response.data);
       })

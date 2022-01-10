@@ -17,6 +17,7 @@ function Profile() {
   console.log(param);
   useEffect(() => {
     getPostes();
+    // eslint-disable-next-line
   }, []);
 
 
@@ -27,10 +28,10 @@ function Profile() {
       .get("http://localhost:5000/getPosts")
       .then((response) => {
         setpostes(
-          response.data.filter((post) => post.createdBy._id == param.id)
+          response.data.filter((post) => post.createdBy._id === param.id)
         );
         console.log(
-          response.data.filter((post) => post.createdBy._id == param.id)
+          response.data.filter((post) => post.createdBy._id === param.id)
         );
       })
       .catch((err) => {
@@ -57,14 +58,16 @@ function Profile() {
   console.log(state);
   useEffect(() => {
     getfollowed();
+    console.log(users);
+    // eslint-disable-next-line
   }, []);
 
   const getfollowed = () => {
     axios
       .get("http://localhost:5000/getfollowed")
       .then((response) => {
-        console.log(response.data.filter((i) => i.username == state.Login.id));
-        setUsers(response.data.filter((i) => i.username == state.Login.id)[0]);
+        console.log(response.data.filter((i) => i.username === state.Login.id));
+        setUsers(response.data.filter((i) => i.username === state.Login.id)[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -90,6 +93,7 @@ function Profile() {
               <img
                 className={cx("card-img")}
                 src={item.image}
+                alt="img"
                 onClick={() => imageClick(item._id)}
               />
             </div>
