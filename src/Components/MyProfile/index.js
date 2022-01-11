@@ -114,8 +114,7 @@ function MyProfile() {
 
     
     const result = await axios.put(
-      // `${BASE_URL}/updat/${state.Login.id}`,
-      `http://localhost:5000/updat/${state.Login.id}`,
+      `${BASE_URL}/updat/${state.Login.id}`,
       {
         password: e.target.password.value,
         username: e.target.username.value,
