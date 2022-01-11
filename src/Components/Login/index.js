@@ -1,236 +1,184 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { storage } from "../../Firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
-import grid from "../../styles/grid.css";
-import classNames from "classnames";
-import "../Like/style.css";
-const cx = classNames.bind(grid);
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { Loginn } from "./../../reducers/Login";
+import "./style.css";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
-function MyProfile() {
-  const [users, setUsers] = useState([]);
-  const [postes, setpostes] = useState([]);
+const MySwal = withReactContent(Swal);
+const popupTools = require("popup-tools");
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+const Login = () => {
   const navigate = useNavigate();
-  const [edit, setEdit] = useState(false);
+  const dispatch = useDispatch();
+  const [emilOrUserName, setEmilOrUserName] = useState("");
+  // const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
   const state = useSelector((state) => {
     return {
-      Login: state.Login,
+      token: state.Login.token,
     };
   });
 
-  const [progress, setProgress] = useState(0);
-  const [images, setImages] = useState([]);
+  const login = async () => {
+    setMessage("");
+    try {
+      const res = await axios.post(`http://localhost:5000/login`, {
+        usernameOrEmail: emilOrUserName,
+        password,
+      });
+      dispatch(
+        Loginn({
+          role: res.data.result.role,
+          token: res.data.token,
+          id: res.data.result._id,
+        })
+      );
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Logged in successfully ",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      console.log(res.data);
+      navigate("/");
+    } catch (error) {
+      setMessage(error.response.data.message);
+      MySwal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Wrong email or password, please try again.",
+        confirmButtonColor: "black",
+      });
+    }
+  };
 
-  const uploadPictures = (e) => {
-    let image = e.target.files[0];
-    const dataType = image.name.match(/\.(jpe?g|png|gif)$/gi);
-    if (image == null || dataType == null) return;
-    const storageRef = ref(storage, `images/${image.name}`);
-    const uploadImamge = uploadBytesResumable(storageRef, image);
-    uploadImamge.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadImamge.snapshot.ref).then((url) => {
-          setImages(url);
-          console.log(url);
-        });
+  const googleLogin = () => {
+    popupTools.popup(
+      `${BASE_URL}/auth/google`,
+      "Google Login",
+      { width: 400, height: 600 },
+      function (err, user) {
+        if (err) {
+          console.log(err);
+        } else {
+          dispatch(
+            Loginn({
+              role: user.data.result.role,
+              token: user.data.token,
+            })
+          );
+          navigate("/");
+        }
       }
     );
   };
-  useEffect(() => {
-    setProgress(0);
-  }, [images]);
 
-  console.log(state);
-  useEffect(() => {
-    getUsers();
-    getPostes();
-    // eslint-disable-next-line
-  }, []);
-
-  const getPostes = () => {
-    axios
-      .get("http://localhost:5000/getPosts")
-      .then((response) => {
-        console.log(response.data);
-        setpostes(
-          response.data.filter((post) => post.createdBy._id === state.Login.id)
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const deletePostes = (id) => {
-    axios.delete(`http://localhost:5000/deletePost/${id}`, {
-      headers: { Authorization: `Bearer ${state.Login.token}` },
+  const forgotPassword = async () => {
+    const { value: email } = await MySwal.fire({
+      title: "Forgot Password",
+      input: "email",
+      inputPlaceholder: "Enter your email address",
+      showCancelButton: true,
+      confirmButtonColor: "black",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
     });
-    getPostes();
-    // navigate(`/myprofile`);
-  };
 
-  const getUsers = () => {
-    axios
-      .get("http://localhost:5000/getusers")
-      .then((response) => {
-        setUsers(response.data.filter((users) => users._id === state.Login.id));
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const updateUSer = async (e) => {
-    e.preventDefault();
-    console.log(images);
-    console.log();
-    const result = await axios.put(
-      `http://localhost:5000/updat/${state.Login.id}`,
-      {
-        password: e.target.password.value,
-        username: e.target.username.value,
-        imgProfile: images,
-        email: e.target.email.value,
-      },
-      { headers: { Authorization: `Bearer ${state.Login.token}` } }
-    );
-
-    console.log(result);
-    getUsers();
-  };
-
-  useEffect(() => {}, [users]);
-
-  const imageClick = (id) => {
-    navigate(`/Recipe/${id}`);
+    if (email) {
+      try {
+        await axios.post(`${BASE_URL}/email_check`, {
+          email,
+        });
+        MySwal.fire({
+          icon: "success",
+          text: "Check your email to reset the password",
+          confirmButtonColor: "black",
+        });
+      } catch (error) {
+        MySwal.fire({
+          icon: "error",
+          text: "Something went wrong!",
+          confirmButtonColor: "black",
+        });
+      }
+    }
   };
 
   return (
-    <div className="hoemDiv" dir="rtl">
-      {users.map((item) => (
+    <div className="loginWrapper">
+      {state.token ? (
         <>
-          <h3>{item.username}</h3>
-          <br />
-        </>
-      ))}
-
-      <button
-        onClick={() => {
-          setEdit(true);
-        }}
-      >
-        تعديل البيانات
-      </button>
-      <br />
-      {edit ? (
-        <form onSubmit={updateUSer}>
-          <label className="modelDes">الاسم</label>
-          <input
-            name="username"
-            type="text"
-            placeholder="username"
-            defaultValue={users[0].username}
-          />
-
-          <label className="modelDes">البريد</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            defaultValue={users[0].email}
-          />
-          <label className="modelDes">الرقم السري</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="password"
-            defaultValue={users[0].password}
-          />
-          <label className="modelDes">صورة الملف الشخصي</label>
-
-          <div className="upload">
-            <input
-              type="file"
-              accept=".gif,.jpg,.jpeg,.png"
-              onChange={(e) => {
-                uploadPictures(e);
-              }}
-              id="img"
-              style={{ display: "none" }}
-            />
-            <label htmlFor="img">تحميل صور</label>
-            {!(progress === 0) ? (
-              <div className="progress">
-                <p>يتم الرفع {progress}%</p>
-              </div>
-            ) : null}
-          </div>
-
-          <div className="imagesPost">
-            {/* {images?.map((image) => (
-              <img src={image} width="80px" height="80px" />
-            ))} */}
-          </div>
-
-          <br />
-          <button
-            type="button"
-            onClick={() => {
-              setEdit(false);
-            }}
-          >
-            الغاء
-          </button>
-          <button className="submitBtn" type="submit">
-            ارسال
-          </button>
-        </form>
-      ) : (
-        <> </>
-      )}
-      <br />
-      <h3>وصفاتك</h3>
-      <hr />
-      {postes.map((item) => (
-        <>
-          {/* <p>انت تتابع {users?.following?.length}</p>
-          <p>المتابعين {users?.followedBy?.length}</p> */}
-
-          <br />
-
-          <br />
-          <div className={cx("card-detail")}>
+          <div>
             <div>
-              <div>
-                <h3>{item.title}</h3>
-                <button onClick={() => deletePostes(item._id)}>
-                  حذف الوصفة
-                </button>
-              </div>
-              <img
-                className={cx("card-img")}
-                src={item.image}
-                alt="img"
-                onClick={() => imageClick(item._id)}
-              />
+              <p>You already loggedin, you don't need to login</p>
+            </div>
+            <div>
+              <button onClick={() => navigate("/home")}>home</button>
             </div>
           </div>
         </>
-      ))}
+      ) : (
+        <main className="panel">
+          <div>
+            <h2>Login</h2>
+            {message ? <div className="message">{message}</div> : ""}
+            <form
+              className="input"
+              onSubmit={(e) => {
+                e.preventDefault();
+                login(e);
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Email/Username"
+                onChange={(e) => setEmilOrUserName(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <p className="forgotPassword" onClick={forgotPassword}>
+                forgot your password?
+              </p>
+              <input id="submitButton" type="submit" value="Submit" />
+            </form>
+            <button
+              type="button"
+              className="login-with-google-btn"
+              onClick={googleLogin}
+            >
+              Or Login with Google
+            </button>
+          </div>
+          <div className="signUpDiv">
+            <h2 className="gotosignUp">Hello, friend!</h2>
+            <p className="gotosignUp">
+              if you haven't registered yet, sign up to receive our weekly
+              offers
+            </p>
+            <button
+              className="gotosignUp"
+              id="signupButton"
+              onClick={() => navigate("/signup")}
+            >
+              Sign up
+            </button>
+          </div>
+        </main>
+      )}
     </div>
   );
-}
+};
 
-export default MyProfile;
+export default Login;
