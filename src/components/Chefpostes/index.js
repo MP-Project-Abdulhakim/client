@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
-import "../Chefpostes/style.css";
+import "./style.css";
 const cx = classNames.bind(grid);
 
 function Profile() {

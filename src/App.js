@@ -1,17 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import Header from "./components/Header/index";
-import Recipe from "./components/Recipe";
-import Active from "./components/active";
-import Chefpostes from "./components/Chefpostes";
-import Profile from "./components/Profile";
-import Download from "./components/Download";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Like from "./components/Like";
-import Follow from "./components/Follow";
-import MyProfile from "./components/MyProfile";
+import Home from "./Components/Home";
+import Header from "./Components/Header/index";
+import Recipe from "./Components/Recipe";
+import Active from "./Components/active";
+import Chefpostes from "./Components/Chefpostes";
+import Profile from "./Components/Profile";
+import Download from "./Components/Download";
+import Signup from "./Components/Signup";
+import Login from "./Components/Login";
+import Like from "./Components/Like";
+import Follow from "./Components/Follow";
+import MyProfile from "./Components/MyProfile";
 import "./App.css";
 
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
-import "../Like/style.css";
+import "./style.css";
 const cx = classNames.bind(grid);
 
 function Like() {
