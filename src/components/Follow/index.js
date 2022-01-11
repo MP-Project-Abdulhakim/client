@@ -21,10 +21,7 @@ function Follow() {
 
   const getfollowed = () => {
     axios
-      .get(
-        "http://localhost:5000/getfollowed"
-    
-      )
+      .get("http://localhost:5000/getfollowed")
       .then((response) => {
         console.log(
           response.data.filter((user) => user.username === state.Login.id)
@@ -39,12 +36,9 @@ function Follow() {
       });
   };
 
-
-  
   const chefPostesClick = (id) => {
     navigate(`/Chefpostes/${id}`);
   };
-
 
   return (
     <div className="hoemDiv" dir="rtl">

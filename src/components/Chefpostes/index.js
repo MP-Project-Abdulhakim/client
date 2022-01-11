@@ -20,10 +20,7 @@ function Profile() {
     // eslint-disable-next-line
   }, []);
 
-
-
   const getPostes = () => {
-    
     axios
       .get("http://localhost:5000/getPosts")
       .then((response) => {
@@ -39,9 +36,6 @@ function Profile() {
       })
       .then(() => {});
   };
-
-
-
 
   const imageClick = (id) => {
     navigate(`/Recipe/${id}`);

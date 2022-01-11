@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Commentss from "../comment";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
-import './style.css'
+import "./style.css";
 
 const cx = classNames.bind(grid);
 
@@ -91,10 +91,11 @@ function Recipe() {
     axios
       .get("http://localhost:5000/getfollowed")
       .then((response) => {
-        if (postes[0]?.createdBy._id!=null) {
+        if (postes[0]?.createdBy._id != null) {
           console.log(
-            response.data
-              .filter((user) => user.username === postes[0]?.createdBy._id)
+            response.data.filter(
+              (user) => user.username === postes[0]?.createdBy._id
+            )
           );
           console.log(response.data);
           if (
@@ -103,11 +104,10 @@ function Recipe() {
               .followedBy.includes(state.Login.id)
           ) {
             console.log("im followed");
-             setFollow(true);
+            setFollow(true);
           } else {
             console.log("not followed");
-             setFollow(false);
-             
+            setFollow(false);
           }
         }
       })
@@ -120,8 +120,6 @@ function Recipe() {
     getUsersFollowing();
     // eslint-disable-next-line
   }, [postes]);
-
-
 
   const gevFollow = () => {
     axios
@@ -159,15 +157,11 @@ function Recipe() {
       });
   };
 
-  const recipe = 
-  
-  postes[0]?.recipe.map(function (item, i) {
+  const recipe = postes[0]?.recipe.map(function (item, i) {
     return (
       <form action="">
         <input type="checkbox" />
-        <label  htmlFor="checkbox">
-          {item}
-        </label>
+        <label htmlFor="checkbox">{item}</label>
       </form>
     );
   });

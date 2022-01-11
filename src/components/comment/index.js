@@ -1,21 +1,20 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import './style.css'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import "./style.css";
 const Commentss = () => {
- const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [noComment, setNoComment] = useState(0);
   const [commments, setcommments] = useState([]);
-useEffect(() => {
-  getComments();
-  // eslint-disable-next-line
-}, [])
+  useEffect(() => {
+    getComments();
+    // eslint-disable-next-line
+  }, []);
 
+  const param = useParams();
 
-    const param = useParams();
-
-    const state = useSelector((state) => {
+  const state = useSelector((state) => {
     return {
       Login: state.Login,
     };
@@ -23,43 +22,36 @@ useEffect(() => {
 
   console.log(state);
 
-      const sendComment = async (e) => {
-        e.preventDefault();
-      
-          try {
-            const result = await axios.post(
-              `${BASE_URL}/createComment`,
-              {
-                theComment: e.target.comment.value,
-                onPost:param.id
-              },
-              { headers: { Authorization: `Bearer ${state.Login.token}` } }
-            );
-            console.log(result.data);
-            getComments();
-          } catch (err) {
-            console.error(err);
-          }
-          e.target.comment.value = "";
-        }
+  const sendComment = async (e) => {
+    e.preventDefault();
 
+    try {
+      const result = await axios.post(
+        `${BASE_URL}/createComment`,
+        {
+          theComment: e.target.comment.value,
+          onPost: param.id,
+        },
+        { headers: { Authorization: `Bearer ${state.Login.token}` } }
+      );
+      console.log(result.data);
+      getComments();
+    } catch (err) {
+      console.error(err);
+    }
+    e.target.comment.value = "";
+  };
 
-
-      const getComments = async () => {
-        try {
-          const result = await axios.get(
-            `${BASE_URL}/getComments/${param.id}`
-          );
-          console.log(result.data);
-          setcommments(result.data);
-          setNoComment(result.data.length);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-
-
-
+  const getComments = async () => {
+    try {
+      const result = await axios.get(`${BASE_URL}/getComments/${param.id}`);
+      console.log(result.data);
+      setcommments(result.data);
+      setNoComment(result.data.length);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="hoemDiv" dir="rtl">
@@ -140,4 +132,4 @@ useEffect(() => {
   );
 };
 
-export default Commentss
+export default Commentss;

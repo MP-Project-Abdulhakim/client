@@ -39,24 +39,20 @@ const Active = () => {
   };
   return (
     <div className="activee">
-     
-    
-      
-        <h3>تأكيد الحساب</h3>
-        <div >
-          <ReactCodeInput
-            position="center"
-            fields={4}
-            onComplete={(e) => {
-              setCode(e);
-            }}
-          />
-        </div>
-        <button id="resetPasswordButton" bg="#777" onClick={verifyAccount}>
-          {" "}
-          تفعيل
-        </button>
-      
+      <h3>تأكيد الحساب</h3>
+      <div>
+        <ReactCodeInput
+          position="center"
+          fields={4}
+          onComplete={(e) => {
+            setCode(e);
+          }}
+        />
+      </div>
+      <button id="resetPasswordButton" bg="#777" onClick={verifyAccount}>
+        {" "}
+        تفعيل
+      </button>
     </div>
   );
 };

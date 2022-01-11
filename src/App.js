@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import Header from "./components/Header";
+import Header from "./components/Header/index";
 import Recipe from "./components/Recipe";
 import Active from "./components/active";
 import Chefpostes from "./components/Chefpostes";
