@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
-import Header from "./Components/Header/index";
+
 import Recipe from "./Components/Recipe";
 import Active from "./Components/active";
 import Chefpostes from "./Components/Chefpostes";
@@ -13,12 +13,13 @@ import Like from "./Components/Like";
 import Follow from "./Components/Follow";
 import MyProfile from "./Components/MyProfile";
 import "./App.css";
+import Nav from "./Components/Nav";
 
 
 function App() {
   return (
     <div>
-      <Header />
+      <Nav/>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home />} />
