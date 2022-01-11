@@ -9,6 +9,10 @@ import "./style.css";
 
 const cx = classNames.bind(grid);
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+
 function Recipe() {
   const Navigate = useNavigate();
 
@@ -19,7 +23,7 @@ function Recipe() {
   const param = useParams();
   useEffect(() => {
     getPostes();
-    // eslint-disable-next-line
+    
   }, []);
 
   const state = useSelector((state) => {
@@ -30,7 +34,7 @@ function Recipe() {
 
   const getPostes = () => {
     axios
-      .get("http://localhost:5000/getPosts")
+      .get(`${BASE_URL}/getPosts`)
       .then((response) => {
         console.log(response.data);
         setpostes(response.data.filter((post) => post._id === param.id));
@@ -53,7 +57,7 @@ function Recipe() {
   const gevLike = () => {
     axios
       .post(
-        "http://localhost:5000/addLike",
+        `${BASE_URL}/addLike`,
         {
           postId: param.id,
         },
@@ -72,7 +76,7 @@ function Recipe() {
   const removeLike = () => {
     axios
       .put(
-        "http://localhost:5000/deleteLike",
+        `${BASE_URL}/deleteLike`,
         {
           postId: param.id,
         },
@@ -89,7 +93,7 @@ function Recipe() {
 
   const getUsersFollowing = () => {
     axios
-      .get("http://localhost:5000/getfollowed")
+      .get(`${BASE_URL}/getfollowed`)
       .then((response) => {
         if (postes[0]?.createdBy._id != null) {
           console.log(
@@ -124,7 +128,7 @@ function Recipe() {
   const gevFollow = () => {
     axios
       .post(
-        "http://localhost:5000/follow",
+        `${BASE_URL}/follow`,
         {
           following: postes[0]?.createdBy._id,
         },
@@ -142,7 +146,7 @@ function Recipe() {
   const removeFollow = () => {
     axios
       .put(
-        "http://localhost:5000/deletefollow",
+        `${BASE_URL}/deletefollow`,
         {
           following: postes[0]?.createdBy._id,
         },

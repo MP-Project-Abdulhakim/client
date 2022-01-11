@@ -5,7 +5,13 @@ import { useSelector } from "react-redux";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
 import "./style.css";
+
+
 const cx = classNames.bind(grid);
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 
 function Like() {
   const [users, setUsers] = useState([]);
@@ -20,13 +26,12 @@ function Like() {
   console.log(state);
   useEffect(() => {
     getUsers();
-    // eslint-disable-next-line
   }, []);
 
   const getUsers = () => {
     axios
       .post(
-        "http://localhost:5000/getLiked",
+        `${BASE_URL}/getLiked`,
         {
           userId: state.Login.id,
         },

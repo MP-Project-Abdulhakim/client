@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
-
+import Aboutus from "./Components/Aboutus";
 import Recipe from "./Components/Recipe";
 import Active from "./Components/active";
 import Chefpostes from "./Components/Chefpostes";
@@ -19,11 +19,12 @@ import Nav from "./Components/Nav";
 function App() {
   return (
     <div>
-      <Nav/>
+      <Nav />
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/like" element={<Like />} />
           <Route exact path="/follow" element={<Follow />} />

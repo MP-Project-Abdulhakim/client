@@ -9,6 +9,10 @@ import classNames from "classnames";
 import "../Like/style.css";
 const cx = classNames.bind(grid);
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+
 function MyProfile() {
   const [users, setUsers] = useState([]);
   const [postes, setpostes] = useState([]);
@@ -55,12 +59,12 @@ function MyProfile() {
   useEffect(() => {
     getUsers();
     getPostes();
-    // eslint-disable-next-line
+  
   }, []);
 
   const getPostes = () => {
     axios
-      .get("http://localhost:5000/getPosts")
+      .get(`${BASE_URL}/getPosts`)
       .then((response) => {
         console.log(response.data);
         setpostes(
@@ -73,16 +77,19 @@ function MyProfile() {
   };
 
   const deletePostes = (id) => {
-    axios.delete(`http://localhost:5000/deletePost/${id}`, {
+    axios.delete(`${BASE_URL}/deletePost/${id}`, {
       headers: { Authorization: `Bearer ${state.Login.token}` },
     });
     getPostes();
-    // navigate(`/myprofile`);
+    setTimeout(() => {
+    getPostes();
+      
+    }, 200);
   };
 
   const getUsers = () => {
     axios
-      .get("http://localhost:5000/getusers")
+      .get(`${BASE_URL}/getusers`)
       .then((response) => {
         setUsers(response.data.filter((users) => users._id === state.Login.id));
         console.log(response.data);
@@ -94,14 +101,25 @@ function MyProfile() {
 
   const updateUSer = async (e) => {
     e.preventDefault();
-    console.log(images);
-    console.log();
+    console.log(
+      e.target.password.value,
+      e.target.username.value,
+      images,
+      e.target.email.value
+    );
+
+    let theImage = "";
+    if (images.length > 0) theImage = images;
+    else theImage = users[0].imgProfile;
+
+    
     const result = await axios.put(
+      // `${BASE_URL}/updat/${state.Login.id}`,
       `http://localhost:5000/updat/${state.Login.id}`,
       {
         password: e.target.password.value,
         username: e.target.username.value,
-        imgProfile: images,
+        imgProfile: theImage,
         email: e.target.email.value,
       },
       { headers: { Authorization: `Bearer ${state.Login.token}` } }

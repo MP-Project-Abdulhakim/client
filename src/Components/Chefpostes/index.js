@@ -8,6 +8,11 @@ import classNames from "classnames";
 import "./style.css";
 const cx = classNames.bind(grid);
 
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+
 function Profile() {
   const [postes, setpostes] = useState([]);
   const param = useParams();
@@ -22,7 +27,7 @@ function Profile() {
 
   const getPostes = () => {
     axios
-      .get("http://localhost:5000/getPosts")
+      .get(`${BASE_URL}/getPosts`)
       .then((response) => {
         setpostes(
           response.data.filter((post) => post.createdBy._id === param.id)
@@ -58,7 +63,7 @@ function Profile() {
 
   const getfollowed = () => {
     axios
-      .get("http://localhost:5000/getfollowed")
+      .get(`${BASE_URL}/getfollowed`)
       .then((response) => {
         console.log(response.data.filter((i) => i.username === state.Login.id));
         setUsers(response.data.filter((i) => i.username === state.Login.id)[0]);
@@ -74,9 +79,6 @@ function Profile() {
         <>
           <div>
             <h3>{item.createdBy.username}</h3>
-            {/* <h6> يتابع {users?.following?.length} </h6>
-            <h6>يتابعه {users?.followedBy?.length}</h6>
-            {console.log(users.username)} */}
           </div>
           <br></br>
           <hr />

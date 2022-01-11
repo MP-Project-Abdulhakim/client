@@ -15,7 +15,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [emilOrUserName, setEmilOrUserName] = useState("");
-  // const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -28,7 +27,7 @@ const Login = () => {
   const login = async () => {
     setMessage("");
     try {
-      const res = await axios.post(`http://localhost:5000/login`, {
+      const res = await axios.post(`${BASE_URL}/login`, {
         usernameOrEmail: emilOrUserName,
         password,
       });
@@ -153,13 +152,13 @@ const Login = () => {
               </p>
               <input id="submitButton" type="submit" value="Submit" />
             </form>
-            <button
+            {/* <button
               type="button"
               className="login-with-google-btn"
               onClick={googleLogin}
             >
               Or Login with Google
-            </button>
+            </button> */}
           </div>
           <div className="signUpDiv">
             <h2 className="gotosignUp">Hello, friend!</h2>

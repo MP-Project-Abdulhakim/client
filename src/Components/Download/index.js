@@ -6,6 +6,10 @@ import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { useNavigate } from "react-router-dom";
 
+
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Download = () => {
   const navigate = useNavigate();
   const [add, setAddAnother] = useState([[]]);
@@ -50,7 +54,7 @@ const Download = () => {
     e.preventDefault();
     console.log(e.target.ingridents.value);
     const result = await axios.post(
-      `http://localhost:5000/addPost`,
+      `${BASE_URL}/addPost`,
       {
         title: e.target.title.value,
         image: images,

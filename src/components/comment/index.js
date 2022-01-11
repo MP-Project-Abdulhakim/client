@@ -3,13 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./style.css";
+
+
+
+
 const Commentss = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [noComment, setNoComment] = useState(0);
   const [commments, setcommments] = useState([]);
   useEffect(() => {
     getComments();
-    // eslint-disable-next-line
+    
   }, []);
 
   const param = useParams();
@@ -99,28 +103,6 @@ const Commentss = () => {
                         {comment.createdAt.slice(11, 16)}
                       </p>
                     </div>
-                  </div>
-                  <div className="flex_inline">
-                    {/* {comment.user._id == User?.result?._id ? (
-                      <p
-                        className="del"
-                        onClick={() => DeleteComment(comment._id)}
-                      >
-                        <i class="far fa-trash-alt"></i>
-                      </p>
-                    ) : (
-                      <></>
-                    )}
-                    {comment.user._id == User?.result?._id ? (
-                      <p
-                        className="del"
-                        onClick={() => UpdateComment(comment._id)}
-                      >
-                        <i class="far fa-edit"></i>
-                      </p>
-                    ) : (
-                      <></>
-                    )} */}
                   </div>
                 </div>
               </div>

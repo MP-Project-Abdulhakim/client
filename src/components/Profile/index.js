@@ -1,22 +1,25 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 
 function Profile() {
   const [users, setusers] = useState([]);
   const param = useParams();
 
-  // const navigate = useNavigate();
+
 
   useEffect(() => {
     getusers();
-    // eslint-disable-next-line
+   
   }, []);
 
   const getusers = () => {
     axios
-      .get("http://localhost:5000/getusers")
+      .get(`${BASE_URL}/getusers`)
       .then((response) => {
         setusers(response.data.filter((users) => users._id === param.id));
         console.log(response.data);

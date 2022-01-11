@@ -8,6 +8,10 @@ import grid from "../../styles/grid.css";
 
 const cx = classNames.bind(grid);
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
+
 function Home() {
   const [postes, setpostes] = useState([]);
   const [users, setusers] = useState([]);
@@ -21,7 +25,7 @@ function Home() {
 
   const getPostes = () => {
     axios
-      .get("http://localhost:5000/getPosts")
+      .get(`${BASE_URL}/getPosts`)
       .then((response) => {
         setpostes(response.data);
         console.log(setpostes);
@@ -33,7 +37,7 @@ function Home() {
   };
   const getusers = () => {
     axios
-      .get("http://localhost:5000/getusers")
+      .get(`${BASE_URL}/getusers`)
       .then((response) => {
         setusers(
           response.data.filter(

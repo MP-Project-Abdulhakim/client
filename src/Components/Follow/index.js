@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 function Follow() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
@@ -16,12 +21,11 @@ function Follow() {
   console.log(state);
   useEffect(() => {
     getfollowed();
-    // eslint-disable-next-line
   }, []);
 
   const getfollowed = () => {
     axios
-      .get("http://localhost:5000/getfollowed")
+      .get(`${BASE_URL}/getfollowed`)
       .then((response) => {
         console.log(
           response.data.filter((user) => user.username === state.Login.id)
