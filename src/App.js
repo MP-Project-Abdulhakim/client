@@ -14,7 +14,6 @@ import Follow from "./components/Follow";
 import MyProfile from "./components/MyProfile";
 import "./App.css";
 
-// const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
   return (
