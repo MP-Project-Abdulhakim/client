@@ -1,0 +1,53 @@
+.download form label{
+    display: block;
+
+}
+
+.download{
+      display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.modelDes{
+    font-size: 15px;
+  align-items: center;
+}
+
+
+.progress{
+    font-size: 10px;
+    color: royalblue;
+}
+.dForm{
+    padding: 25px;
+    width: 500px;
+    height: 500px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px -6px #697a79, 0 0 30px -50px #697a79;
+ display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+}
+
+
+
+
+.dForm label {
+     display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+}
+
+input{ width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;}
+  

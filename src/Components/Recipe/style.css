@@ -1,0 +1,17 @@
+.rec{
+    /* margin-left: 200px; */
+}
+
+.rec form{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.rec label{
+    width: 85%;
+    margin-bottom: 15px;
+}
+.rec input{
+    width: 15%;
+
+}
