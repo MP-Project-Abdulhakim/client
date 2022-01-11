@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./style.css";
 import classNames from "classnames";
 import grid from "../../styles/grid.css";
+import Header from "../Header";
 
 const cx = classNames.bind(grid);
 
@@ -56,6 +57,7 @@ function Home() {
 
   return (
     <div className="hoemDiv" dir="rtl">
+      <Header />
       <text>الطباخين</text>
       <br />
 

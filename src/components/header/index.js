@@ -1,5 +1,5 @@
 import React from "react";
-// import logo from "../../img/logo.webp";
+import logo from "../../img/logo.webp";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
@@ -49,7 +49,7 @@ const Header = () => {
                     مفضلة الطباخين
                   </p>
                 </li>
-                {/* <img className="logop" alt="img" src={logo} /> */}
+                <img className="logop" alt="img" src={logo} />
                 <li className={cx(styles.menu__item)}>
                   <p
                     className={cx(styles.menu__link)}
@@ -94,7 +94,7 @@ const Header = () => {
                       تسجيل جديد
                     </p>
                   </li>
-                  {/* <img className="logop" alt="img" src={logo} /> */}
+                  <img className="logop" alt="img" src={logo} />
                   <li className={cx(styles.menu__item)}>
                     <p
                       className={cx(styles.menu__link)}
