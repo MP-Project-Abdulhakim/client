@@ -92,7 +92,7 @@ const Login = () => {
 
     if (email) {
       try {
-        await axios.post(`${BASE_URL}/email_check`, {
+        await axios.post(`${BASE_URL}/check`, {
           email,
         });
         MySwal.fire({

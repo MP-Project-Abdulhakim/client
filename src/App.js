@@ -14,6 +14,7 @@ import Follow from "./Components/Follow";
 import MyProfile from "./Components/MyProfile";
 import "./App.css";
 import Nav from "./Components/Nav";
+import Res from "./Components/Res";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/res" element={<Res />} />
           <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/like" element={<Like />} />

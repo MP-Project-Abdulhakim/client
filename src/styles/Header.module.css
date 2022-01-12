@@ -36,6 +36,7 @@
   font-size: 12pt;
   text-transform: capitalize;
   letter-spacing: 1px;
+   cursor: pointer;
 }
 
 .menu__link:hover {
