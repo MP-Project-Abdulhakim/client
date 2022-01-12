@@ -20,6 +20,7 @@
 .progress{
     font-size: 10px;
     color: royalblue;
+    cursor: pointer;
 }
 .dForm{
     padding: 25px;

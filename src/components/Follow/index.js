@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import "./style.css"
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -54,7 +54,7 @@ function Follow() {
       <br />
       {users?.following?.map((item) => (
         <div onClick={() => chefPostesClick(item._id)}>
-          <li>{item.username}</li>
+          <li className="followUser">{item.username}</li>
         </div>
       ))}
     </div>

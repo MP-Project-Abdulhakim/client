@@ -49,7 +49,12 @@ const Nav = () => {
                     مفضلة الطباخين
                   </p>
                 </li>
-                <img className="logop" alt="img" src={logo} />
+                <img
+                  className="logop"
+                  alt="img"
+                  src={logo}
+                  onClick={() => navigate("/")}
+                />
                 <li className={cx(styles.menu__item)}>
                   <p
                     className={cx(styles.menu__link)}
@@ -94,7 +99,12 @@ const Nav = () => {
                       تسجيل جديد
                     </p>
                   </li>
-                  <img className="logop" alt="img" src={logo} />
+                  <img
+                    className="logop"
+                    alt="img"
+                    src={logo}
+                    onClick={() => navigate("/")}
+                  />
                   <li className={cx(styles.menu__item)}>
                     <p
                       className={cx(styles.menu__link)}

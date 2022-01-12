@@ -6,7 +6,7 @@ import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
-import "../Like/style.css";
+
 const cx = classNames.bind(grid);
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -187,7 +187,7 @@ function MyProfile() {
               id="img"
               style={{ display: "none" }}
             />
-            <label htmlFor="img">تحميل صور</label>
+            <label className="downlodImgProfile" htmlFor="img">اضغط هنا لتحميل الصورة</label>
             {!(progress === 0) ? (
               <div className="progress">
                 <p>يتم الرفع {progress}%</p>
