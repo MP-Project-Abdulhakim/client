@@ -52,17 +52,17 @@ const Signup = () => {
         <h1>
           <div className="centerWrapper">
             <div className="homeSignupTitle">
-              <p>You already loggedin, you don't need to signup</p>
+              <p>لقد قمت بتسجيل الدخول بالفعل ، ولست بحاجة إلى التسجيل</p>
             </div>
             <div className="homeSignupButtons">
-              <button onClick={() => navigate("/")}>HOME</button>
+              <button onClick={() => navigate("/")}>الصفحة الرئيسية</button>
             </div>
           </div>
         </h1>
       ) : (
         <main className="signupPanel">
           <div className="loginDiv">
-            <h1>check Password:</h1>
+            <h1>تحقق من كلمة المرور:</h1>
             <PasswordChecklist
               rules={[
                 "minLength",
@@ -88,11 +88,11 @@ const Signup = () => {
               className="btnBK"
               onClick={() => navigate("/login")}
             >
-              login
+              تسجيل الدخول
             </button>
           </div>
           <div className="signupDiv">
-            <h2>Signup</h2>
+            <h2>تسجيل</h2>
             {message ? <div className="message">{message}</div> : ""}
             <form
               className="signupInput"
@@ -106,8 +106,8 @@ const Signup = () => {
                 onChange={(e) => setRole(e.target.value)}
                 required
               >
-                <option value="61c817269c72cd8cbad62eff">User</option>
-                <option value="61cc4465387a78a3e5b8d772">Chef</option>
+                <option value="61c817269c72cd8cbad62eff">عضو</option>
+                <option value="61cc4465387a78a3e5b8d772">طباخ</option>
               </select>
               <input
                 type="text"
