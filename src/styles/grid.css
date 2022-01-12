@@ -54,6 +54,7 @@
 
 .card-link {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .card-img {
@@ -62,6 +63,8 @@
   object-fit: cover;
   object-position: center;
   background: #c7ecee;
+    cursor: pointer;
+
 }
 
 .card-body {
