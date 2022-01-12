@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/res" element={<Res />} />
+          <Route exact path="/res/:id" element={<Res />} />
           <Route exact path="/aboutus" element={<Aboutus />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/like" element={<Like />} />
