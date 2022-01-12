@@ -152,13 +152,6 @@ const Login = () => {
               </p>
               <input id="submitButton" type="submit" value="Submit" />
             </form>
-            {/* <button
-              type="button"
-              className="login-with-google-btn"
-              onClick={googleLogin}
-            >
-              Or Login with Google
-            </button> */}
           </div>
           <div className="signUpDiv">
             <h2 className="gotosignUp">Hello, friend!</h2>
