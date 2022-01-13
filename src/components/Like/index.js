@@ -21,6 +21,7 @@ function Like() {
     return {
       Login: state.Login,
     };
+    console.log('hello');
   });
 
   console.log(state);
