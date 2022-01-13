@@ -61,14 +61,16 @@ function Home() {
   };
 
   return (
-    <div className="hoemDiv" dir="rtl">
-      
+    <div className="hoemDiv" dir="rtl" id="rest">
       <text>الطباخين</text>
       <br />
 
       <div className="HorizontalScroll">
         {users.map((item) => (
-          <div className="chefProfileInHome" onClick={() => profileClick(item._id)}>
+          <div
+            className="chefProfileInHome"
+            onClick={() => profileClick(item._id)}
+          >
             <img className="itm" src={item.imgProfile} alt="img" />
 
             <div className="card-bodyy">

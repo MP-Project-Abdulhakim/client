@@ -84,7 +84,7 @@ const Download = () => {
   }, [recipe]);
 
   return (
-    <div dir="rtl" className="download">
+    <div dir="rtl" className="download hoemDiv">
       <form className="dForm" onSubmit={addPost}>
         <label className="modelDes">العنوان</label>
         <input name="title" type="text" placeholder="العنوان" />
