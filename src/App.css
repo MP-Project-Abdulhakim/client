@@ -42,3 +42,10 @@
   
 }
 
+
+@media screen and (max-width: 730px) {
+  .hoemDiv{
+    margin-top: 50vh;
+  }
+
+}

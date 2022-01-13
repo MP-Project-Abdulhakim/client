@@ -58,7 +58,6 @@ function Profile() {
   useEffect(() => {
     getfollowed();
     console.log(users);
-    // eslint-disable-next-line
   }, []);
 
   const getfollowed = () => {
@@ -83,7 +82,7 @@ function Profile() {
           <br></br>
           <hr />
           <br></br>
-          <div className={cx("card-detaill")}>
+          <div className={cx("card-detail")}>
             <div>
               <h3>{item.title}</h3>
               <img
