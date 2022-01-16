@@ -130,7 +130,7 @@ const Login = () => {
               <p className="forgotPassword" onClick={forgotPassword}>
                 نسيت رقمك السري؟
               </p>
-              <input id="submitButton" type="submit" value="تسجيل" />
+              <input id="submitButton" type="submit" value="تسجيل الدخول" />
             </form>
           </div>
           <div className="signUpDiv">
