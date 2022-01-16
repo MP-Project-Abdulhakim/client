@@ -47,7 +47,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="Signup">
+    <div className="Signup hoemDiv">
       {state.token ? (
         <h1>
           <div className="centerWrapper">
