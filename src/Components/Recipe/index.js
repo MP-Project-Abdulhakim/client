@@ -6,6 +6,7 @@ import Commentss from "../comment";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
 import "./style.css";
+import Swal from "sweetalert2";
 
 const cx = classNames.bind(grid);
 
@@ -69,7 +70,12 @@ function Recipe() {
       })
       .catch((err) => {
         console.log(err);
-        Navigate("/login");
+       Swal.fire({
+         position: "center",
+         title: "يجب عليك تسجيل الدخول",
+         showConfirmButton: false,
+         timer: 1500,
+       });
       });
   };
 
@@ -122,7 +128,7 @@ function Recipe() {
 
   useEffect(() => {
     getUsersFollowing();
-    // eslint-disable-next-line
+   
   }, [postes]);
 
   const gevFollow = () => {
@@ -139,7 +145,12 @@ function Recipe() {
         getPostes();
       })
       .catch((err) => {
-        console.log(err);
+       Swal.fire({
+         position: "center",
+         title: "يجب عليك تسجيل الدخول",
+         showConfirmButton: false,
+         timer: 1500,
+       });
       });
   };
 

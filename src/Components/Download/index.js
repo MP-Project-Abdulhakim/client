@@ -5,6 +5,7 @@ import "./style.css";
 import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -65,6 +66,13 @@ const Download = () => {
     );
 
     console.log(result.data);
+     Swal.fire({
+       position: "center",
+       icon: "success",
+       title: "تم الاضافة",
+       showConfirmButton: false,
+       timer: 1500,
+     });
     navigate("/myprofile");
   };
 

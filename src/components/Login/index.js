@@ -41,7 +41,7 @@ const Login = () => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Logged in successfully ",
+        title: "تم تسجيل الدخول ",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -52,7 +52,7 @@ const Login = () => {
       MySwal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Wrong email or password, please try again.",
+        text: "خطاء في البريد او اسم المستخدم",
         confirmButtonColor: "black",
       });
     }
@@ -63,7 +63,7 @@ const Login = () => {
     const { value: email } = await MySwal.fire({
       title: "Forgot Password",
       input: "email",
-      inputPlaceholder: "Enter your email address",
+      inputPlaceholder: "ادخل البريد الالكتروني",
       showCancelButton: true,
       confirmButtonColor: "black",
       cancelButtonText: "Cancel",

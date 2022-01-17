@@ -6,12 +6,12 @@ import { storage } from "../../Firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import grid from "../../styles/grid.css";
 import classNames from "classnames";
+import Swal from "sweetalert2";
+
 
 const cx = classNames.bind(grid);
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-
-
 
 function MyProfile() {
   const [users, setUsers] = useState([]);
@@ -56,10 +56,11 @@ function MyProfile() {
   }, [images]);
 
   console.log(state);
+
   useEffect(() => {
     getUsers();
     getPostes();
-  
+    deletePostes();
   }, []);
 
   const getPostes = () => {
@@ -76,15 +77,25 @@ function MyProfile() {
       });
   };
 
+
   const deletePostes = (id) => {
-    axios.delete(`${BASE_URL}/deletePost/${id}`, {
-      headers: { Authorization: `Bearer ${state.Login.token}` },
-    });
-    getPostes();
-    setTimeout(() => {
-    getPostes();
-      
-    }, 200);
+    axios
+      .delete(`${BASE_URL}/deletePost/${id}`, {
+        headers: { Authorization: `Bearer ${state.Login.token}` },
+      })
+      .then(() => {
+        
+        setTimeout(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "تم الحذف",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          getPostes();
+        }, 200);
+      });
   };
 
   const getUsers = () => {
@@ -112,7 +123,6 @@ function MyProfile() {
     if (images.length > 0) theImage = images;
     else theImage = users[0].imgProfile;
 
-    
     const result = await axios.put(
       `${BASE_URL}/updat/${state.Login.id}`,
       {
@@ -125,6 +135,13 @@ function MyProfile() {
     );
 
     console.log(result);
+     Swal.fire({
+       position: "center",
+       icon: "success",
+       title: "تم التعديل",
+       showConfirmButton: false,
+       timer: 1500,
+     });
     getUsers();
   };
 
@@ -187,7 +204,9 @@ function MyProfile() {
               id="img"
               style={{ display: "none" }}
             />
-            <label className="downlodImgProfile" htmlFor="img">اضغط هنا لتحميل الصورة</label>
+            <label className="downlodImgProfile" htmlFor="img">
+              اضغط هنا لتحميل الصورة
+            </label>
             {!(progress === 0) ? (
               <div className="progress">
                 <p>يتم الرفع {progress}%</p>
@@ -195,11 +214,6 @@ function MyProfile() {
             ) : null}
           </div>
 
-          <div className="imagesPost">
-            {/* {images?.map((image) => (
-              <img src={image} width="80px" height="80px" />
-            ))} */}
-          </div>
 
           <br />
           <button
